@@ -11,14 +11,10 @@ class MainnavPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        body: IndexedStack(
-          index: mainnavController.selectedIndex.value,
-          children: mainnavController.pages,
-        ),
+        body: mainnavController.pages[mainnavController.selectedIndex.value],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: mainnavController.selectedIndex.value,
           onTap: mainnavController.changeIndex,
-          type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.house), label: 'Home'),
             BottomNavigationBarItem(

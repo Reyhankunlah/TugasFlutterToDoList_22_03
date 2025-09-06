@@ -7,6 +7,7 @@ class CustomInput extends StatelessWidget {
   final bool isPassword;
   final TextInputType inputType;
   final bool isNumber;
+  final Color borderColor;
 
   const CustomInput({
     super.key,
@@ -14,7 +15,8 @@ class CustomInput extends StatelessWidget {
     required this.controller,
     this.isPassword = false,
     this.inputType = TextInputType.text,
-    required this.isNumber,
+    this.isNumber = false,
+    this.borderColor = Colors.black26,
   });
 
   @override
@@ -30,7 +32,10 @@ class CustomInput extends StatelessWidget {
         keyboardType: inputType,
         decoration: InputDecoration(
           labelText: label,
-          border: const OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: borderColor, width: 2),
+          ),
         ),
       ),
     );

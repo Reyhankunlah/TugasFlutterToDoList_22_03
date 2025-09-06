@@ -5,6 +5,6 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("History Page")));
+    return Scaffold(body: Center(child: Text("INI HISTORY")));
   }
 }

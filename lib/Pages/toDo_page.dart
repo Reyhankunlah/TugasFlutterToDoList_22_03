@@ -5,6 +5,6 @@ class ToDoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("ini TO DO PAGE")));
+    return Scaffold(body: Center(child: Text("INI TO DO PAGE")));
   }
 }
