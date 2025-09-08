@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
 import 'package:flutter_todolist/Controllers/loginPage_controller.dart';
+import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:flutter_todolist/components/custom_button.dart';
 import 'package:flutter_todolist/components/custom_input.dart';
 import 'package:flutter_todolist/components/custom_text.dart';
@@ -10,6 +11,7 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final cLogPage = Get.find<LoginpageController>();
+  final taskC = Get.find<TaskController>();
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +107,7 @@ class LoginPage extends StatelessWidget {
                         myText: cLogPage.isLoading.value
                             ? "Processing..."
                             : "LOGIN",
-                        myTextColor: Colors.white,
+                        textColor: CustomColor.black,
                         onPressed: cLogPage.loginLogic,
                         isOutlined: true,
                       ),
