@@ -5,5 +5,6 @@ class AppRoutes {
   static const profilePage = '/profilePage';
   static const homePage = '/homePage';
   static const historyPage = '/historyPage';
-  static const toDoPage = '/toDoPage';
+  static const toDoPage = '/todo';
+  static const editToDoPage = '/editToDoPage';
 }
