@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
+import 'package:flutter_todolist/Components/custom_textfield.dart';
 import 'package:flutter_todolist/Controllers/loginPage_controller.dart';
 import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:flutter_todolist/components/custom_button.dart';
@@ -63,7 +64,7 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 32),
 
                   // ===== Username =====
-                  CustomInput(
+                  CustomTextField(
                     label: "Username",
                     controller: cLogPage.input1,
                     isNumber: false,
@@ -72,7 +73,7 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   // ===== Password =====
-                  CustomInput(
+                  CustomTextField(
                     label: "Password",
                     controller: cLogPage.input2,
                     isPassword: true,
