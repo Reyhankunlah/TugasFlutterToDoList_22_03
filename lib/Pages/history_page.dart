@@ -11,13 +11,94 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() {
-        final cp = taskC.completed;
-        return ListView(
-          padding: const EdgeInsets.all(16),
-          children: [_section("COMPLETED", cp)],
-        );
-      }),
+      body: Stack(
+        children: [
+          // Background
+          Container(
+            width: 367,
+           height: 800,
+            decoration: const BoxDecoration(color: Color(0xFFEDF6FF)),
+          ),
+          Positioned(
+            left: -301,
+            top: 367,
+            child: Container(
+              width: 635,
+              height: 635,
+              decoration: const ShapeDecoration(
+                color: Color(0xFFF2FEFF),
+                shape: OvalBorder(),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 230,
+            top: -253,
+            child: Container(
+              width: 635,
+              height: 635,
+              decoration: const ShapeDecoration(
+                color: Color(0xFFF2FEFF),
+                shape: OvalBorder(),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            top: 0,
+            child: Container(
+              width: 367,
+              height: 78,
+              decoration: const ShapeDecoration(
+                color: Color(0xFF4365FF),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(21),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 235,
+            top: -231,
+            child: Container(
+              width: 635,
+              height: 384,
+              decoration: const ShapeDecoration(
+                color: Color(0x19F7F9FF),
+                shape: OvalBorder(),
+              ),
+            ),
+          ),
+          const Positioned(
+            left: 17,
+            top: 21,
+            child: Text(
+              'History',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+                fontFamily: 'Bebas Neue',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+
+          // Task list pakai Obx
+          Positioned.fill(
+            top: 100, // biar gak ketutup header
+            child: Obx(() {
+              final cp = taskC.completed;
+              return ListView(
+                padding: const EdgeInsets.all(16),
+                children: [_section("COMPLETED", cp)],
+              );
+            }),
+          ),
+        ],
+      ),
     );
   }
 

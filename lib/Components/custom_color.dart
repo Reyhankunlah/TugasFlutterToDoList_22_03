@@ -11,6 +11,8 @@ class CustomColor {
   static const Color elementInactive2 = Colors.black26;
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
+  static const Color Circle = Color(0xFFEDF6FF);
+  static const Color Circle2 = Color(0xFFF2FEFF);
 }
 
 TextStyle fontColor(
