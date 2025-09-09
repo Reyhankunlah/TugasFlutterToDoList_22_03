@@ -8,6 +8,7 @@ import 'package:flutter_todolist/Models/task_model.dart';
 import 'package:get/get.dart';
 
 class ToDoPage extends StatelessWidget {
+  
   ToDoPage({super.key});
 
   final TextEditingController nameController = TextEditingController();
@@ -193,9 +194,7 @@ class ToDoPage extends StatelessWidget {
                             "Sukses",
                             "Task ditambahkan",
                             snackPosition: SnackPosition.TOP,
-                            backgroundColor:
-                                CustomColor.green.withOpacity(0.1),
-                            colorText: CustomColor.green,
+                            
                           );
                         },
                         child: const Text(
