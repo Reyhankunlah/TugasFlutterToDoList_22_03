@@ -13,6 +13,9 @@ class CustomColor {
   static const Color white = Color(0xFFFFFFFF);
   static const Color Circle = Color(0xFFEDF6FF);
   static const Color Circle2 = Color(0xFFF2FEFF);
+  static const Color blue = Color.fromARGB(255, 120, 188, 255);
+  static const Color blugrey = Color.fromARGB(255, 176, 190, 197);
+  static const Color grey = Color(0x19F7F9FF);
 }
 
 TextStyle fontColor(
