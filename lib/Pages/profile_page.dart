@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
          height: 580,
           clipBehavior: Clip.antiAlias,
           decoration: const BoxDecoration(
-            color: Color(0xFFEDF6FF),
+            color: CustomColor.Circle,
           ),
           child: Stack(
             children: [
@@ -74,7 +74,7 @@ class ProfilePage extends StatelessWidget {
               width: 635,
               height: 384,
               decoration: const ShapeDecoration(
-                color: Color(0x19F7F9FF),
+                color: CustomColor.grey,
                 shape: OvalBorder(),
               ),
             ),
@@ -164,14 +164,14 @@ class ProfileCard extends StatelessWidget {
           // Foto profile pakai CircleAvatar
           CircleAvatar(
             radius: 54,
-            backgroundColor: Colors.blueGrey.shade200,
+            backgroundColor: CustomColor.blugrey,
             backgroundImage:
                 imageUrl.isNotEmpty ? NetworkImage(imageUrl) : null,
             child: imageUrl.isEmpty
                 ? const Icon(
                     Icons.person_outline,
                     size: 50,
-                    color: Colors.white,
+                    color: CustomColor.white,
                   )
                 : null,
           ),

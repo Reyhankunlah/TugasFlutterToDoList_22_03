@@ -40,7 +40,7 @@ class ToDoPage extends StatelessWidget {
       body: Stack(
         children: [
           // Background dasar
-          Container(color: Color.fromARGB(255, 120, 188, 255)),
+          Container(color:CustomColor.blue),
 
           // Lingkaran dekorasi
           Positioned(
@@ -50,7 +50,7 @@ class ToDoPage extends StatelessWidget {
               width: 635,
               height: 635,
               decoration: const ShapeDecoration(
-                color: Color(0xFFF2FEFF),
+                color: CustomColor.Circle2,
                 shape: OvalBorder(),
               ),
             ),
@@ -62,7 +62,7 @@ class ToDoPage extends StatelessWidget {
               width: 635,
               height: 635,
               decoration: const ShapeDecoration(
-                color: Color(0xFFF2FEFF),
+                color: CustomColor.Circle2,
                 shape: OvalBorder(),
               ),
             ),
@@ -159,9 +159,7 @@ class ToDoPage extends StatelessWidget {
                               "Error",
                               "Nama & Status harus diisi",
                               snackPosition: SnackPosition.TOP,
-                              backgroundColor:
-                                  CustomColor.red.withOpacity(0.1),
-                              colorText: CustomColor.red,
+                              
                             );
                             return;
                           }
