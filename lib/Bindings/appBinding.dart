@@ -10,6 +10,6 @@ class Appbinding extends Bindings {
     Get.lazyPut(() => LoginpageController());
     Get.lazyPut(() => EditTodoController(), fenix: true);
     Get.lazyPut(() => MainnavController(), fenix: true);
-    Get.lazyPut(() => TaskController(), fenix: true); // <— cukup lazyPut
+    Get.lazyPut(() => TaskController(), fenix: true);
   }
 }

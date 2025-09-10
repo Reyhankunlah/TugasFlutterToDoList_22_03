@@ -29,7 +29,7 @@ class LoginpageController extends GetxController {
     isLoading.value = false;
 
     // pindah halaman
-    Get.toNamed(AppRoutes.mainNavPage);
+    Get.offNamed(AppRoutes.mainNavPage);
   }
 
   @override

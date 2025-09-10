@@ -85,14 +85,12 @@ class LoginPage extends StatelessWidget {
                   // ===== Forgot password =====
                   Align(
                     alignment: Alignment.centerRight,
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () {},
-                      child: Text(
-                        "Forgot your password?",
-                        style: TextStyle(
-                          color: CustomColor.blueSecondary,
-                          fontSize: 14,
-                        ),
+                      child: CustomText(
+                        myText: '"Forgot your password?',
+                        fontColor: CustomColor.blueSecondary,
+                        fontSize: 14,
                       ),
                     ),
                   ),
@@ -118,7 +116,7 @@ class LoginPage extends StatelessWidget {
 
                   // ===== Create account =====
                   Center(
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () {},
                       child: const CustomText(
                         myText: 'Create new account',

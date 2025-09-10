@@ -7,8 +7,8 @@ import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:flutter_todolist/Models/task_model.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class ToDoPage extends StatelessWidget {
-  
   ToDoPage({super.key});
 
   final TextEditingController nameController = TextEditingController();
@@ -35,12 +35,13 @@ class ToDoPage extends StatelessWidget {
         title: const Text("Add New Task"),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: CustomColor.bluePrimary, // beda warna dengan background
+        backgroundColor:
+            CustomColor.bluePrimary, // beda warna dengan background
       ),
       body: Stack(
         children: [
           // Background dasar
-          Container(color:CustomColor.blue),
+          Container(color: CustomColor.blue),
 
           // Lingkaran dekorasi
           Positioned(
@@ -159,7 +160,6 @@ class ToDoPage extends StatelessWidget {
                               "Error",
                               "Nama & Status harus diisi",
                               snackPosition: SnackPosition.TOP,
-                              
                             );
                             return;
                           }
@@ -192,7 +192,6 @@ class ToDoPage extends StatelessWidget {
                             "Sukses",
                             "Task ditambahkan",
                             snackPosition: SnackPosition.TOP,
-                            
                           );
                         },
                         child: const Text(
