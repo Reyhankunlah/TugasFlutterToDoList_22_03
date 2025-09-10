@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Components/custom_color.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -17,48 +18,80 @@ class ProfilePage extends StatelessWidget {
           child: Stack(
             children: [
               // Background lingkaran
-              Positioned(
-                left: -301,
-                top: 367,
-                child: _circleBackground(635, const Color(0xFFF2FEFF)),
-              ),
-              Positioned(
-                left: 230,
-                top: -253,
-                child: _circleBackground(635, const Color(0xFFF2FEFF)),
-              ),
-              Positioned(
-                left: 235,
-                top: -231,
-                child: _circleBackground(384, const Color.fromARGB(23, 255, 255, 255)),
-              ),
+             // Background
+          Container(
+            width: 367,
+            height: 800,
+            decoration: const BoxDecoration(color: CustomColor.Circle),
+          ),
 
-              // AppBar custom
-              Container(
-                width: 367,
-                height: 78,
-                decoration: const ShapeDecoration(
-                  color: Color(0xFF4365FF),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(21),
-                      bottomRight: Radius.circular(20),
-                    ),
+          // Shape decorations
+          Positioned(
+            left: -301,
+            top: 367,
+            child: Container(
+              width: 635,
+              height: 635,
+              decoration: const ShapeDecoration(
+                color: CustomColor.Circle2,
+                shape: OvalBorder(),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 230,
+            top: -253,
+            child: Container(
+              width: 635,
+              height: 635,
+              decoration: const ShapeDecoration(
+                color:CustomColor.Circle2,
+                shape: OvalBorder(),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            top: 0,
+            child: Container(
+              width: 367,
+              height: 78,
+              decoration: const ShapeDecoration(
+                color: CustomColor.bluePrimary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(21),
+                    bottomRight: Radius.circular(20),
                   ),
                 ),
               ),
-              const Positioned(
-                left: 17,
-                top: 21,
-                child: Text(
-                  'Profile',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontFamily: 'Bebas Neue',
-                  ),
-                ),
+            ),
+          ),
+          Positioned(
+            left: 235,
+            top: -231,
+            child: Container(
+              width: 635,
+              height: 384,
+              decoration: const ShapeDecoration(
+                color: Color(0x19F7F9FF),
+                shape: OvalBorder(),
               ),
+            ),
+          ),
+          const Positioned(
+            left: 17,
+            top: 21,
+            child: Text(
+              'Profile',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+                fontFamily: 'Bebas Neue',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
 
               // Profile Agustinus
               const ProfileCard(
