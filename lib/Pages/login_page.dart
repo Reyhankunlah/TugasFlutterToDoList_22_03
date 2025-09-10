@@ -16,6 +16,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, // biar aman saat keyboard muncul
       body: SafeArea(
         child: Stack(
           children: [
@@ -32,25 +33,22 @@ class LoginPage extends StatelessWidget {
             ),
 
             // ===== Main content =====
-            SingleChildScrollView(
+            Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(height: 40),
-
                   // ===== Header =====
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image.asset("assets/tulist_logo.png", height: 70),
                         ],
                       ),
-                      const SizedBox(height: 8),
+
                       CustomText(
                         myText: 'Login here',
                         fontSize: 20,
@@ -60,17 +58,20 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
 
-                  const SizedBox(height: 32),
 
                   // ===== Username =====
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                  child: 
                   CustomTextField(
                     label: "Username",
                     controller: cLogPage.input1,
                     isNumber: false,
                     borderColor: CustomColor.bluePrimary,
                   ),
-                  const SizedBox(height: 16),
-
+                  ),
+                  
+            
                   // ===== Password =====
                   CustomTextField(
                     label: "Password",
@@ -80,39 +81,32 @@ class LoginPage extends StatelessWidget {
                     borderColor: CustomColor.bluePrimary,
                   ),
 
-                  const SizedBox(height: 12),
-
                   // ===== Forgot password =====
                   Align(
                     alignment: Alignment.centerRight,
                     child: InkWell(
                       onTap: () {},
                       child: CustomText(
-                        myText: '"Forgot your password?',
+                        myText: 'Forgot your password?',
                         fontColor: CustomColor.blueSecondary,
                         fontSize: 14,
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 24),
+                  Spacer(), // isi ruang fleksibel
 
                   // ===== Button Login =====
                   Obx(() {
-                    return SizedBox(
-                      width: double.infinity,
-                      child: CustomButton(
-                        myText: cLogPage.isLoading.value
-                            ? "Processing..."
-                            : "LOGIN",
-                        textColor: CustomColor.black,
-                        onPressed: cLogPage.loginLogic,
-                        isOutlined: true,
-                      ),
+                    return CustomButton(
+                      myText: cLogPage.isLoading.value
+                          ? "Processing..."
+                          : "LOGIN",
+                      textColor: CustomColor.black,
+                      onPressed: cLogPage.loginLogic,
+                      isOutlined: true,
                     );
                   }),
-
-                  const SizedBox(height: 16),
 
                   // ===== Create account =====
                   Center(
@@ -125,7 +119,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 24),
+                  Spacer(), // isi ruang fleksibel
 
                   // ===== Continue with =====
                   const Center(
@@ -134,15 +128,12 @@ class LoginPage extends StatelessWidget {
                       myText: 'Or continue with',
                     ),
                   ),
-                  const SizedBox(height: 12),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _socialButton("assets/google_icon.png"),
-                      const SizedBox(width: 16),
                       _socialButton("assets/facebook_icon.png"),
-                      const SizedBox(width: 16),
                       _socialButton("assets/apple_icon.png"),
                     ],
                   ),
@@ -156,13 +147,16 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _socialButton(String asset) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black12),
-        borderRadius: BorderRadius.circular(8),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black12),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Image.asset(asset, width: 28, height: 28),
       ),
-      child: Image.asset(asset, width: 28, height: 28),
     );
   }
 

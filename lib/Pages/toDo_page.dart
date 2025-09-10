@@ -32,7 +32,12 @@ class ToDoPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add New Task"),
+        title: const Text("Add New Task",
+        style: TextStyle( 
+          fontWeight: FontWeight.bold,
+          color: CustomColor.white,
+        ),),
+        
         centerTitle: true,
         elevation: 0,
         backgroundColor:
