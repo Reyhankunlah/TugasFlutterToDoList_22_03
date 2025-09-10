@@ -36,11 +36,11 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // gantinya Spacer
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // ===== Header =====
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -48,93 +48,100 @@ class LoginPage extends StatelessWidget {
                           Image.asset("assets/tulist_logo.png", height: 70),
                         ],
                       ),
-
-                      CustomText(
-                        myText: 'Login here',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontColor: CustomColor.bluePrimary,
+                      Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        child: CustomText(
+                          myText: 'Login here',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontColor: CustomColor.bluePrimary,
+                        ),
                       ),
                     ],
                   ),
 
-
-                  // ===== Username =====
-                  Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                  child: 
-                  CustomTextField(
-                    label: "Username",
-                    controller: cLogPage.input1,
-                    isNumber: false,
-                    borderColor: CustomColor.bluePrimary,
-                  ),
-                  ),
-                  
-            
-                  // ===== Password =====
-                  CustomTextField(
-                    label: "Password",
-                    controller: cLogPage.input2,
-                    isPassword: true,
-                    isNumber: false,
-                    borderColor: CustomColor.bluePrimary,
-                  ),
-
-                  // ===== Forgot password =====
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      onTap: () {},
-                      child: CustomText(
-                        myText: 'Forgot your password?',
-                        fontColor: CustomColor.blueSecondary,
-                        fontSize: 14,
+                  // ===== Form login =====
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 10),
+                        child: CustomTextField(
+                          label: "Username",
+                          controller: cLogPage.input1,
+                          isNumber: false,
+                          borderColor: CustomColor.bluePrimary,
+                        ),
                       ),
-                    ),
-                  ),
-
-                  Spacer(), // isi ruang fleksibel
-
-                  // ===== Button Login =====
-                  Obx(() {
-                    return CustomButton(
-                      myText: cLogPage.isLoading.value
-                          ? "Processing..."
-                          : "LOGIN",
-                      textColor: CustomColor.black,
-                      onPressed: cLogPage.loginLogic,
-                      isOutlined: true,
-                    );
-                  }),
-
-                  // ===== Create account =====
-                  Center(
-                    child: InkWell(
-                      onTap: () {},
-                      child: const CustomText(
-                        myText: 'Create new account',
-                        fontColor: CustomColor.elementInactive1,
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 6),
+                        child: CustomTextField(
+                          label: "Password",
+                          controller: cLogPage.input2,
+                          isPassword: true,
+                          isNumber: false,
+                          borderColor: CustomColor.bluePrimary,
+                        ),
                       ),
-                    ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: InkWell(
+                          onTap: () {},
+                          child: CustomText(
+                            myText: 'Forgot your password?',
+                            fontColor: CustomColor.blueSecondary,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
 
-                  Spacer(), // isi ruang fleksibel
+                  // ===== Tombol Login & Create account =====
+                  Column(
+                    children: [
+                      Obx(() {
+                        return Container(
+                          width: double.infinity,
+                          margin: const EdgeInsets.only(bottom: 10),
+                          child: CustomButton(
+                            myText: cLogPage.isLoading.value
+                                ? "Processing..."
+                                : "LOGIN",
+                            textColor: CustomColor.black,
+                            onPressed: cLogPage.loginLogic,
+                            isOutlined: true,
+                          ),
+                        );
+                      }),
+                      InkWell(
+                        onTap: () {},
+                        child: const CustomText(
+                          myText: 'Create new account',
+                          fontColor: CustomColor.elementInactive1,
+                        ),
+                      ),
+                    ],
+                  ),
 
                   // ===== Continue with =====
-                  const Center(
-                    child: CustomText(
-                      fontColor: CustomColor.elementInactive2,
-                      myText: 'Or continue with',
-                    ),
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      _socialButton("assets/google_icon.png"),
-                      _socialButton("assets/facebook_icon.png"),
-                      _socialButton("assets/apple_icon.png"),
+                      const CustomText(
+                        fontColor: CustomColor.elementInactive2,
+                        myText: 'Or continue with',
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _socialButton("assets/google_icon.png"),
+                            _socialButton("assets/facebook_icon.png"),
+                            _socialButton("assets/apple_icon.png"),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ],
