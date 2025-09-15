@@ -1,5 +1,17 @@
-// lib/models/task_model.dart
 enum TaskStatus { notStarted, inProgress, completed }
+
+extension TaskStatusExtension on TaskStatus {
+  String get label {
+    switch (this) {
+      case TaskStatus.notStarted:
+        return "Not Started";
+      case TaskStatus.inProgress:
+        return "In Progress";
+      case TaskStatus.completed:
+        return "Completed";
+    }
+  }
+}
 
 class Task {
   final String title;

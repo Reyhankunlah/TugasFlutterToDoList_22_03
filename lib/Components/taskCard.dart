@@ -1,5 +1,6 @@
 // lib/components/task_card.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Components/custom_text.dart';
 import 'package:get/get.dart';
 import 'package:flutter_todolist/Models/task_model.dart';
 import 'package:flutter_todolist/Components/custom_button.dart';
@@ -40,24 +41,25 @@ class TaskCard extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(backgroundColor: dotColor, radius: 12),
-                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        task.title,
-                        style: const TextStyle(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 14),
+                        child: CustomText(
+                          myText: task.title,
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
                         ),
                       ),
-                      const SizedBox(height: 2),
-                      Text(
-                        "Due: ${task.dueDate != null ? task.dueDate!.toLocal().toString().split(' ').first : '-'}",
-                        style: const TextStyle(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 14),
+                        child: CustomText(
+                          myText:
+                              "Due: ${task.dueDate != null ? task.dueDate!.toLocal().toString().split(' ').first : '-'}",
+                          fontColor: CustomColor.black,
                           fontSize: 12,
-                          color: Colors.black54,
                         ),
                       ),
                     ],
@@ -77,14 +79,17 @@ class TaskCard extends StatelessWidget {
 
             if (isExpanded.value) ...[
               const Divider(),
-              Text("Status: ${task.status.name}"),
-              Text(
-                "Tags: ${task.tags.isNotEmpty ? task.tags.join(', ') : '-'}",
+
+              CustomText(
+                myText:
+                    "Tags: ${task.tags.isNotEmpty ? task.tags.join(', ') : '-'}",
+                fontSize: 12,
               ),
-              Text(
-                "Date: ${task.dueDate != null ? "${task.dueDate!.day}-${task.dueDate!.month}-${task.dueDate!.year}" : '-'}",
+              CustomText(
+                myText:
+                    "Date: ${task.dueDate != null ? "${task.dueDate!.day}-${task.dueDate!.month}-${task.dueDate!.year}" : '-'}",
+                fontSize: 12,
               ),
-              const SizedBox(height: 8),
 
               if (showEdit)
                 Align(
