@@ -10,30 +10,48 @@ class AddtodoController extends GetxController {
   final RxList<String> selectedTags = <String>[].obs;
 
   late TaskController taskCtrl;
-  int? editIndex; // null = tambah baru
 
   @override
   void onInit() {
     super.onInit();
-    taskCtrl = Get.find<TaskController>();
-    // jika dipanggil untuk edit, kirim index lewat Get.arguments
-    if (Get.arguments is int) {
-      editIndex = Get.arguments as int;
-      final t = taskCtrl.tasks[editIndex!];
-      titleC.text = t.title;
-      status.value = t.status;
-      dueDate = t.dueDate;
-      selectedTags.assignAll(t.tags);
+    taskCtrl = Get.find<TaskController>(); // ambil TaskController
+  }
+
+  // 🔹 enum -> label cantik
+  String? get statusLabel {
+    if (status.value == TaskStatus.notStarted) return null;
+    switch (status.value) {
+      case TaskStatus.inProgress:
+        return "In Progress";
+      case TaskStatus.completed:
+        return "Completed";
+      default:
+        return null;
     }
   }
 
-  void save() {
+  // 🔹 label -> enum
+  void setStatusFromLabel(String label) {
+    if (label == "Not Started") {
+      status.value = TaskStatus.notStarted;
+    } else if (label == "In Progress") {
+      status.value = TaskStatus.inProgress;
+    } else {
+      status.value = TaskStatus.completed;
+    }
+  }
+
+  // 🔹 Tambah task baru
+  void add() {
     final title = titleC.text.trim();
-    if (title.isEmpty) {
+    if (title.isEmpty ||
+        status.value == TaskStatus.notStarted ||
+        dueDate == null ||
+        selectedTags.isEmpty) {
       Get.snackbar(
         "Validasi",
-        "Nama task tidak boleh kosong.",
-        snackPosition: SnackPosition.BOTTOM,
+        "Mohon isi semua field.",
+        snackPosition: SnackPosition.TOP,
         margin: const EdgeInsets.all(12),
       );
       return;
@@ -46,25 +64,20 @@ class AddtodoController extends GetxController {
       tags: selectedTags,
     );
 
-    if (editIndex == null) {
-      taskCtrl.addTask(task);
-      Get.back();
-      Get.snackbar(
-        "Sukses",
-        "Task ditambahkan.",
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(12),
-      );
-    } else {
-      taskCtrl.updateTask(editIndex!, task);
-      Get.back();
-      Get.snackbar(
-        "Sukses",
-        "Task diperbarui.",
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(12),
-      );
-    }
+    taskCtrl.addTask(task);
+    Get.back();
+
+    Get.snackbar(
+      "Sukses",
+      "Task berhasil ditambahkan.",
+      snackPosition: SnackPosition.TOP,
+      margin: const EdgeInsets.all(12),
+    );
+
+    titleC.clear();
+    status.value = TaskStatus.notStarted;
+    dueDate = null;
+    selectedTags.clear();
   }
 
   @override

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Components/backDecoration.dart';
+import 'package:flutter_todolist/Components/custom_Header.dart';
 import 'package:flutter_todolist/Components/custom_button.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
+import 'package:flutter_todolist/Components/custom_text.dart';
 import 'package:flutter_todolist/Components/taskCard.dart';
 import 'package:flutter_todolist/Controllers/task_controller.dart';
-import 'package:flutter_todolist/Models/task_model.dart';
 import 'package:flutter_todolist/Routes/routes.dart';
 import 'package:get/get.dart';
 
@@ -15,98 +17,67 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColor.background,
       body: Stack(
         children: [
-          // Background
-          Container(
-            width: 367,
-            height: 800,
-            decoration: const BoxDecoration(color: CustomColor.Circle),
-          ),
-
-          // Shape decorations
-          Positioned(
-            left: -301,
-            top: 367,
-            child: Container(
-              width: 635,
-              height: 635,
-              decoration: const ShapeDecoration(
-                color: CustomColor.Circle2,
-                shape: OvalBorder(),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 230,
-            top: -253,
-            child: Container(
-              width: 635,
-              height: 635,
-              decoration: const ShapeDecoration(
-                color:CustomColor.Circle2,
-                shape: OvalBorder(),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            top: 0,
-            child: Container(
-              width: 367,
-              height: 78,
-              decoration: const ShapeDecoration(
-                color: CustomColor.bluePrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(21),
-                    bottomRight: Radius.circular(20),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 235,
-            top: -231,
-            child: Container(
-              width: 635,
-              height: 384,
-              decoration: const ShapeDecoration(
-                color: Color(0x19F7F9FF),
-                shape: OvalBorder(),
-              ),
-            ),
-          ),
-          const Positioned(
-            left: 17,
-            top: 21,
-            child: Text(
-              'Home',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontFamily: 'Bebas Neue',
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
-
-          // Task List pakai Obx
-          Positioned.fill(
-            top: 100, // biar gak ketutup header
-            child: Obx(() {
-              final ns = taskC.notStarted;
-              final ip = taskC.inProgress;
-              return ListView(
-                padding: const EdgeInsets.all(16),
+          BackDecoration(),
+          CustomHeader(
+            judulHeader: 'Home',
+          ), // <- ini tadinya "History", aku ganti jadi "Home"
+          Padding(
+            padding: const EdgeInsets.only(top: 100),
+            child: SingleChildScrollView(
+              // 🔑 halaman scroll sekali
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _section("NOT STARTED", ns),
-                  const SizedBox(height: 12),
-                  _section("IN PROGRESS", ip),
+                  // Section Not Started
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
+                    child: CustomText(
+                      myText: 'NOT STARTED',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Obx(() {
+                    final allTasks = [...taskC.notStarted];
+                    return ListView.builder(
+                      physics:
+                          const NeverScrollableScrollPhysics(), // ⛔ no scroll
+                      shrinkWrap: true, // 🔑 biar tinggi menyesuaikan isi
+                      padding: const EdgeInsets.all(16),
+                      itemCount: allTasks.length,
+                      itemBuilder: (context, index) {
+                        final t = allTasks[index];
+                        return TaskCard(task: t, showEdit: true);
+                      },
+                    );
+                  }),
+
+                  // Section In Progress
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
+                    child: CustomText(
+                      myText: 'IN PROGRESS',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Obx(() {
+                    final allTasks = [...taskC.inProgress];
+                    return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(16),
+                      itemCount: allTasks.length,
+                      itemBuilder: (context, index) {
+                        final t = allTasks[index];
+                        return TaskCard(task: t, showEdit: true);
+                      },
+                    );
+                  }),
                 ],
-              );
-            }),
+              ),
+            ),
           ),
 
           // Floating Button
@@ -124,22 +95,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _section(String title, List<Task> data) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-            const Icon(Icons.keyboard_arrow_down),
-          ],
-        ),
-        const SizedBox(height: 8),
-        ...data.map((t) => TaskCard(task: t, showEdit: true)).toList(),
-      ],
     );
   }
 }

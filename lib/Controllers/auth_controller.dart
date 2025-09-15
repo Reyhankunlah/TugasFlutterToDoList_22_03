@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter_todolist/Routes/routes.dart';
 
-class LoginpageController extends GetxController {
+class AuthController extends GetxController {
   final String username = "faiz";
   final String password = "tinus";
   final String dummy = "asd";

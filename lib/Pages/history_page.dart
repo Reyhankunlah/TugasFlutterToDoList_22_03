@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Components/backDecoration.dart';
+import 'package:flutter_todolist/Components/custom_Header.dart';
+import 'package:flutter_todolist/Components/custom_color.dart';
+import 'package:flutter_todolist/Components/custom_text.dart';
 import 'package:flutter_todolist/Components/taskCard.dart';
 import 'package:flutter_todolist/Controllers/task_controller.dart';
-import 'package:flutter_todolist/Models/task_model.dart';
 import 'package:get/get.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -11,110 +14,44 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColor.background,
       body: Stack(
         children: [
-          // Background
-          Container(
-            width: 367,
-           height: 800,
-            decoration: const BoxDecoration(color: Color(0xFFEDF6FF)),
-          ),
-          Positioned(
-            left: -301,
-            top: 367,
-            child: Container(
-              width: 635,
-              height: 635,
-              decoration: const ShapeDecoration(
-                color: Color(0xFFF2FEFF),
-                shape: OvalBorder(),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 230,
-            top: -253,
-            child: Container(
-              width: 635,
-              height: 635,
-              decoration: const ShapeDecoration(
-                color: Color(0xFFF2FEFF),
-                shape: OvalBorder(),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            top: 0,
-            child: Container(
-              width: 367,
-              height: 78,
-              decoration: const ShapeDecoration(
-                color: Color(0xFF4365FF),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(21),
-                    bottomRight: Radius.circular(20),
+          BackDecoration(),
+          CustomHeader(judulHeader: 'History'),
+          Padding(
+            padding: const EdgeInsets.only(top: 100),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Section Completed
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
+                    child: CustomText(
+                      myText: 'COMPLETED',
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
+                  Obx(() {
+                    final allTasks = [...taskC.completed];
+                    return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(16),
+                      itemCount: allTasks.length,
+                      itemBuilder: (context, index) {
+                        final t = allTasks[index];
+                        return TaskCard(task: t, showEdit: true);
+                      },
+                    );
+                  }),
+                ],
               ),
             ),
-          ),
-          Positioned(
-            left: 235,
-            top: -231,
-            child: Container(
-              width: 635,
-              height: 384,
-              decoration: const ShapeDecoration(
-                color: Color(0x19F7F9FF),
-                shape: OvalBorder(),
-              ),
-            ),
-          ),
-          const Positioned(
-            left: 17,
-            top: 21,
-            child: Text(
-              'History',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontFamily: 'Bebas Neue',
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
-
-          // Task list pakai Obx
-          Positioned.fill(
-            top: 100, // biar gak ketutup header
-            child: Obx(() {
-              final cp = taskC.completed;
-              return ListView(
-                padding: const EdgeInsets.all(16),
-                children: [_section("COMPLETED", cp)],
-              );
-            }),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _section(String title, List<Task> data) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-            const Icon(Icons.keyboard_arrow_down),
-          ],
-        ),
-        const SizedBox(height: 8),
-        ...data.map((t) => TaskCard(task: t)).toList(),
-      ],
     );
   }
 }
