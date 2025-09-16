@@ -1,4 +1,3 @@
-import 'package:flutter_todolist/Controllers/addTodo_Controller.dart';
 import 'package:flutter_todolist/Controllers/auth_controller.dart';
 import 'package:flutter_todolist/Controllers/editTodo_Controller.dart';
 import 'package:flutter_todolist/Controllers/nav/mainNav_controller.dart';
@@ -12,6 +11,5 @@ class Appbinding extends Bindings {
     Get.lazyPut(() => EditTodoController(), fenix: true);
     Get.lazyPut(() => MainnavController(), fenix: true);
     Get.lazyPut(() => TaskController(), fenix: true);
-    Get.lazyPut(() => AddtodoController(), fenix: true);
   }
 }

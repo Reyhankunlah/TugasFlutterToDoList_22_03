@@ -1,4 +1,3 @@
-// lib/components/task_card.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Components/custom_text.dart';
 import 'package:get/get.dart';
@@ -24,6 +23,21 @@ class TaskCard extends StatelessWidget {
 
     final isExpanded = false.obs;
     final taskC = Get.find<TaskController>();
+
+    final List<String> bulan = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
 
     return Obx(
       () => Container(
@@ -53,15 +67,6 @@ class TaskCard extends StatelessWidget {
                           fontSize: 16,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14),
-                        child: CustomText(
-                          myText:
-                              "Due: ${task.dueDate != null ? task.dueDate!.toLocal().toString().split(' ').first : '-'}",
-                          fontColor: CustomColor.black,
-                          fontSize: 12,
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -80,14 +85,15 @@ class TaskCard extends StatelessWidget {
             if (isExpanded.value) ...[
               const Divider(),
 
+              CustomText(myText: "Tags: " + task.tags.join(', '), fontSize: 12),
               CustomText(
                 myText:
-                    "Tags: ${task.tags.isNotEmpty ? task.tags.join(', ') : '-'}",
-                fontSize: 12,
-              ),
-              CustomText(
-                myText:
-                    "Date: ${task.dueDate != null ? "${task.dueDate!.day}-${task.dueDate!.month}-${task.dueDate!.year}" : '-'}",
+                    "Date: " +
+                    task.dueDate!.day.toString() +
+                    " " +
+                    bulan[task.dueDate!.month - 1] +
+                    " " +
+                    task.dueDate!.year.toString(),
                 fontSize: 12,
               ),
 
