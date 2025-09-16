@@ -5,13 +5,13 @@ import 'package:flutter_todolist/Components/custom_dropdown.dart';
 import 'package:flutter_todolist/Components/custom_text.dart';
 import 'package:flutter_todolist/Components/custom_textfield.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
-import 'package:flutter_todolist/Controllers/addTodo_Controller.dart';
+import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:get/get.dart';
 
 class ToDoPage extends StatelessWidget {
   ToDoPage({super.key});
 
-  final addtdController = Get.find<AddtodoController>();
+  final addtdController = Get.find<TaskController>();
 
   final TextEditingController dateController = TextEditingController();
 
@@ -109,8 +109,9 @@ class ToDoPage extends StatelessWidget {
                           );
                           if (date != null) {
                             addtdController.dueDate = date;
-                            dateController.text =
-                                "${date.day}-${date.month}-${date.year}";
+                            dateController.text = addtdController.formatDate(
+                              date,
+                            );
                           }
                         },
                         suffixIcon: const Icon(Icons.calendar_today),
@@ -143,7 +144,7 @@ class ToDoPage extends StatelessWidget {
                       child: CustomButton(
                         myText: 'ADD TASK',
                         onPressed: () {
-                          addtdController.add();
+                          addtdController.addFromForm();
                         },
                       ),
                     ),
