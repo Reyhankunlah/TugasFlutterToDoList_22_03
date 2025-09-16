@@ -8,7 +8,7 @@ import 'package:flutter_todolist/Routes/routes.dart';
 import 'package:flutter_todolist/Controllers/task_controller.dart';
 
 class TaskCard extends StatelessWidget {
-  final Task task;
+  final TaskModel task;
   final bool showEdit;
 
   const TaskCard({super.key, required this.task, this.showEdit = false});
@@ -48,73 +48,79 @@ class TaskCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           boxShadow: const [BoxShadow(blurRadius: 8, color: Colors.black12)],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            // row utama
-            Row(
+            // isi utama
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(backgroundColor: dotColor, radius: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14),
-                        child: CustomText(
-                          myText: task.title,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 16),
+                      child: CircleAvatar(
+                        backgroundColor: dotColor,
+                        radius: 12,
                       ),
-                    ],
-                  ),
+                    ),
+                    Expanded(
+                      child: CustomText(
+                        myText: task.title,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
-                IconButton(
-                  onPressed: () => isExpanded.value = !isExpanded.value,
-                  icon: Icon(
-                    isExpanded.value
-                        ? Icons.keyboard_arrow_up
-                        : Icons.keyboard_arrow_down,
-                    size: 28,
+
+                if (isExpanded.value) ...[
+                  const Divider(),
+                  CustomText(
+                    myText: "Tags: " + task.tags.join(', '),
+                    fontSize: 12,
                   ),
-                ),
+                  CustomText(
+                    myText:
+                        "Due Date: ${task.dueDate!.day} ${bulan[task.dueDate!.month - 1]} ${task.dueDate!.year}",
+                    fontSize: 12,
+                  ),
+                  if (showEdit)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: CustomButton(
+                        myText: "",
+                        onPressed: () {
+                          final index = taskC.tasks.indexOf(task);
+                          if (index != -1) {
+                            Get.toNamed(
+                              AppRoutes.editToDoPage,
+                              arguments: index,
+                            );
+                          }
+                        },
+                        isCircle: true,
+                        icon: Icons.edit,
+                        iconSize: 20,
+                        textColor: CustomColor.black,
+                      ),
+                    ),
+                ],
               ],
             ),
 
-            if (isExpanded.value) ...[
-              const Divider(),
-
-              CustomText(myText: "Tags: " + task.tags.join(', '), fontSize: 12),
-              CustomText(
-                myText:
-                    "Date: " +
-                    task.dueDate!.day.toString() +
-                    " " +
-                    bulan[task.dueDate!.month - 1] +
-                    " " +
-                    task.dueDate!.year.toString(),
-                fontSize: 12,
-              ),
-
-              if (showEdit)
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: CustomButton(
-                    myText: "",
-                    onPressed: () {
-                      final index = taskC.tasks.indexOf(task);
-                      if (index != -1) {
-                        Get.toNamed(AppRoutes.editToDoPage, arguments: index);
-                      }
-                    },
-                    isCircle: true,
-                    icon: Icons.edit,
-                    iconSize: 20,
-                    textColor: CustomColor.black,
-                  ),
+            // 🔹 IconButton fix di pojok kanan
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () => isExpanded.value = !isExpanded.value,
+                icon: Icon(
+                  isExpanded.value
+                      ? Icons.keyboard_arrow_up
+                      : Icons.keyboard_arrow_down,
+                  size: 28,
                 ),
-            ],
+              ),
+            ),
           ],
         ),
       ),

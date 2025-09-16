@@ -59,7 +59,7 @@ class EditTodoController extends GetxController {
 
   // simpan perubahan
   void save() {
-    final updatedTask = Task(
+    final updatedTask = TaskModel(
       title: titleC.text.trim(),
       status: status.value,
       dueDate: pickedDate,

@@ -12,16 +12,7 @@ class ToDoPage extends StatelessWidget {
   ToDoPage({super.key});
 
   final addtdController = Get.find<TaskController>();
-
   final TextEditingController dateController = TextEditingController();
-
-  final List<String> statusOptions = [
-    "Not Started",
-    "In Progress",
-    "Completed",
-  ];
-
-  final List<String> tagsOptions = ["Work", "Personal", "Urgent"];
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +48,7 @@ class ToDoPage extends StatelessWidget {
                   children: [
                     // Title
                     Padding(
-                      padding: EdgeInsets.only(top: 10, bottom: 10),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: CustomText(
                         myText: "Task Information",
                         fontColor: CustomColor.black,
@@ -68,7 +59,7 @@ class ToDoPage extends StatelessWidget {
 
                     // Task Name
                     Padding(
-                      padding: EdgeInsets.only(top: 16),
+                      padding: const EdgeInsets.only(top: 16),
                       child: CustomTextField(
                         controller: addtdController.titleC,
                         label: "Task Name",
@@ -77,12 +68,13 @@ class ToDoPage extends StatelessWidget {
 
                     // Status
                     Padding(
-                      padding: EdgeInsets.only(top: 16),
+                      padding: const EdgeInsets.only(top: 16),
                       child: Obx(
                         () => CustomDropdown(
                           label: "Status",
                           value: addtdController.statusLabel,
-                          items: statusOptions,
+                          items: addtdController
+                              .statusOptions, // ✅ dari controller
                           onChanged: (val) {
                             if (val != null) {
                               addtdController.setStatusFromLabel(val);
@@ -94,7 +86,7 @@ class ToDoPage extends StatelessWidget {
 
                     // Due Date
                     Padding(
-                      padding: EdgeInsets.only(top: 16),
+                      padding: const EdgeInsets.only(top: 16),
                       child: CustomTextField(
                         controller: dateController,
                         label: "Due Date",
@@ -120,14 +112,15 @@ class ToDoPage extends StatelessWidget {
 
                     // Tags
                     Padding(
-                      padding: EdgeInsets.only(top: 16, bottom: 16),
+                      padding: const EdgeInsets.only(top: 16, bottom: 16),
                       child: Obx(
                         () => CustomDropdown(
                           label: "Tags",
                           value: addtdController.selectedTags.isEmpty
                               ? null
                               : addtdController.selectedTags.first,
-                          items: tagsOptions,
+                          items:
+                              addtdController.tagsOptions, // ✅ dari controller
                           onChanged: (val) {
                             addtdController.selectedTags.clear();
                             if (val != null) {
