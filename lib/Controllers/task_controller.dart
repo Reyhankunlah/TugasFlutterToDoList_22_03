@@ -3,16 +3,21 @@ import 'package:flutter_todolist/Models/task_model.dart';
 import 'package:get/get.dart';
 
 class TaskController extends GetxController {
-  // 🔹 daftar task
-  RxList<Task> tasks = <Task>[].obs;
+  RxList<TaskModel> tasks = <TaskModel>[].obs;
 
-  // 🔹 controller untuk form tambah task
   final titleC = TextEditingController();
   DateTime? dueDate;
   final Rx<TaskStatus> status = TaskStatus.notStarted.obs;
   final RxList<String> selectedTags = <String>[].obs;
 
-  // 🔹 daftar bulan (Indonesia)
+  final List<String> statusOptions = [
+    "Not Started",
+    "In Progress",
+    "Completed",
+  ];
+
+  final List<String> tagsOptions = ["Work", "Personal", "Urgent"];
+
   final List<String> bulan = const [
     "Januari",
     "Februari",
@@ -28,12 +33,10 @@ class TaskController extends GetxController {
     "Desember",
   ];
 
-  // 🔹 helper untuk format tanggal jadi "16 September 2025"
   String formatDate(DateTime date) {
     return "${date.day} ${bulan[date.month - 1]} ${date.year}";
   }
 
-  // 🔹 enum -> label cantik
   String? get statusLabel {
     switch (status.value) {
       case TaskStatus.notStarted:
@@ -45,7 +48,6 @@ class TaskController extends GetxController {
     }
   }
 
-  // 🔹 label -> enum
   void setStatusFromLabel(String label) {
     if (label == "Not Started") {
       status.value = TaskStatus.notStarted;
@@ -56,7 +58,6 @@ class TaskController extends GetxController {
     }
   }
 
-  // 🔹 Tambah task langsung (dipanggil dari form)
   void addFromForm() {
     final title = titleC.text.trim();
 
@@ -70,7 +71,7 @@ class TaskController extends GetxController {
       return;
     }
 
-    final task = Task(
+    final task = TaskModel(
       title: title,
       status: status.value,
       dueDate: dueDate,
@@ -87,34 +88,19 @@ class TaskController extends GetxController {
       margin: const EdgeInsets.all(12),
     );
 
-    // reset form
     titleC.clear();
     status.value = TaskStatus.notStarted;
     dueDate = null;
     selectedTags.clear();
   }
 
-  // 🔹 Tambah task ke list
-  void addTask(Task task) => tasks.add(task);
+  void addTask(TaskModel task) => tasks.add(task);
 
-  // 🔹 Update task berdasarkan index
-  void updateTask(int index, Task task) {
-    if (index < 0 || index >= tasks.length) return;
-    tasks[index] = task;
-  }
-
-  // 🔹 Hapus task berdasarkan index
-  void removeTask(int index) {
-    if (index < 0 || index >= tasks.length) return;
-    tasks.removeAt(index);
-  }
-
-  // 🔹 Filter task berdasarkan status
-  List<Task> get notStarted =>
+  List<TaskModel> get notStarted =>
       tasks.where((t) => t.status == TaskStatus.notStarted).toList();
-  List<Task> get inProgress =>
+  List<TaskModel> get inProgress =>
       tasks.where((t) => t.status == TaskStatus.inProgress).toList();
-  List<Task> get completed =>
+  List<TaskModel> get completed =>
       tasks.where((t) => t.status == TaskStatus.completed).toList();
 
   @override
@@ -122,19 +108,19 @@ class TaskController extends GetxController {
     super.onInit();
     if (tasks.isEmpty) {
       tasks.addAll([
-        Task(
+        TaskModel(
           title: "Dummy #1",
           status: TaskStatus.notStarted,
           dueDate: DateTime.now(),
           tags: ["Work"],
         ),
-        Task(
+        TaskModel(
           title: "Dummy #2",
           status: TaskStatus.inProgress,
           dueDate: DateTime.now(),
           tags: ["Personal"],
         ),
-        Task(
+        TaskModel(
           title: "Dummy #3",
           status: TaskStatus.completed,
           dueDate: DateTime.now(),
