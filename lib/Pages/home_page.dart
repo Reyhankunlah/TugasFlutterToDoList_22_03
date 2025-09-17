@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final taskC = Get.find<TaskController>();
+  final taskC = Get.find<TaskController>(); // ✅ ambil instance yang sama
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,7 @@ class HomePage extends StatelessWidget {
       body: Stack(
         children: [
           BackDecoration(),
-          CustomHeader(
-            judulHeader: 'Home',
-          ), 
+          CustomHeader(judulHeader: 'Home'),
           Padding(
             padding: const EdgeInsets.only(top: 100),
             child: SingleChildScrollView(
@@ -38,11 +36,10 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Obx(() {
-                    final allTasks = [...taskC.notStarted];
+                    final allTasks = taskC.notStarted;
                     return ListView.builder(
-                      physics:
-                          const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true, 
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                       padding: const EdgeInsets.all(16),
                       itemCount: allTasks.length,
                       itemBuilder: (context, index) {
@@ -60,7 +57,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Obx(() {
-                    final allTasks = [...taskC.inProgress];
+                    final allTasks = taskC.inProgress;
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
