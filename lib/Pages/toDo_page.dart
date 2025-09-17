@@ -104,6 +104,7 @@ class ToDoPage extends StatelessWidget {
                         suffixIcon: const Icon(Icons.calendar_today),
                       ),
                     ),
+
                     Padding(
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
                       child: Obx(
