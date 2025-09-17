@@ -5,41 +5,40 @@ import 'package:flutter_todolist/Controllers/auth_controller.dart';
 import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:flutter_todolist/components/custom_button.dart';
 import 'package:flutter_todolist/components/custom_text.dart';
+import 'package:flutter_todolist/components/social_button.dart';
+import 'package:flutter_todolist/components/circle_bg.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final cLogPage = Get.find<AuthController>();
-  final taskC = Get.put(TaskController()); 
+  final taskC = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, 
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Stack(
           children: [
-           
             Positioned(
               top: -100,
               right: -100,
-              child: _circleBg(250, CustomColor.whiteShadows),
+              child: const CircleBg(size: 250, color: CustomColor.whiteShadows),
             ),
             Positioned(
               bottom: -120,
               left: -100,
-              child: _circleBg(280, CustomColor.whiteShadows),
+              child: const CircleBg(size: 280, color: CustomColor.whiteShadows),
             ),
 
-           
             Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                 
                   Column(
                     children: [
                       Row(
@@ -60,7 +59,6 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
 
-                 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -93,7 +91,6 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
 
-                  
                   Column(
                     children: [
                       Obx(() {
@@ -120,7 +117,6 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
 
-                  // ===== Continue with =====
                   Column(
                     children: [
                       const CustomText(
@@ -130,10 +126,10 @@ class LoginPage extends StatelessWidget {
                       const SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _socialButton("assets/google_icon.png"),
-                          _socialButton("assets/facebook_icon.png"),
-                          _socialButton("assets/apple_icon.png"),
+                        children: const [
+                          SocialButton(asset: "assets/google_icon.png"),
+                          SocialButton(asset: "assets/facebook_icon.png"),
+                          SocialButton(asset: "assets/apple_icon.png"),
                         ],
                       ),
                     ],
@@ -144,28 +140,6 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _socialButton(String asset) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black12),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Image.asset(asset, width: 28, height: 28),
-      ),
-    );
-  }
-
-  Widget _circleBg(double size, Color color) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }
 }
