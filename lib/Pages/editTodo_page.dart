@@ -18,13 +18,12 @@ class EditTodoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Edit Task",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: CustomColor.white,
-          ),
+        title: CustomText(
+          myText: 'Edit Task',
+          fontWeight: FontWeight.bold,
+          fontColor: CustomColor.white,
         ),
+        iconTheme: IconThemeData(color: CustomColor.white),
         centerTitle: true,
         elevation: 0,
         backgroundColor: CustomColor.bluePrimary,

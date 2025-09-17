@@ -37,6 +37,16 @@ class HomePage extends StatelessWidget {
                   ),
                   Obx(() {
                     final allTasks = taskC.notStarted;
+                    if (allTasks.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: CustomText(
+                          myText: "Belum ada task Not Started.",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                        ),
+                      );
+                    }
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -58,6 +68,16 @@ class HomePage extends StatelessWidget {
                   ),
                   Obx(() {
                     final allTasks = taskC.inProgress;
+                    if (allTasks.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: CustomText(
+                          myText: "Belum ada task In Progress.",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                        ),
+                      );
+                    }
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,

@@ -18,13 +18,12 @@ class ToDoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Add New Task",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: CustomColor.white,
-          ),
+        title: CustomText(
+          myText: 'Add New Task',
+          fontWeight: FontWeight.bold,
+          fontColor: CustomColor.white,
         ),
+        iconTheme: IconThemeData(color: CustomColor.white),
         centerTitle: true,
         elevation: 0,
         backgroundColor: CustomColor.bluePrimary,

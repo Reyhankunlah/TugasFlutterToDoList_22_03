@@ -35,6 +35,16 @@ class HistoryPage extends StatelessWidget {
                   ),
                   Obx(() {
                     final allTasks = taskC.completed;
+                    if (allTasks.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: CustomText(
+                          myText: "Belum ada task yang selesai.",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                        ),
+                      );
+                    }
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
