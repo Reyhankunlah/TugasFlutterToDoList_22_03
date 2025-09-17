@@ -23,15 +23,13 @@ class HomePage extends StatelessWidget {
           BackDecoration(),
           CustomHeader(
             judulHeader: 'Home',
-          ), // <- ini tadinya "History", aku ganti jadi "Home"
+          ), 
           Padding(
             padding: const EdgeInsets.only(top: 100),
             child: SingleChildScrollView(
-              // 🔑 halaman scroll sekali
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Section Not Started
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
                     child: CustomText(
@@ -43,8 +41,8 @@ class HomePage extends StatelessWidget {
                     final allTasks = [...taskC.notStarted];
                     return ListView.builder(
                       physics:
-                          const NeverScrollableScrollPhysics(), // ⛔ no scroll
-                      shrinkWrap: true, // 🔑 biar tinggi menyesuaikan isi
+                          const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true, 
                       padding: const EdgeInsets.all(16),
                       itemCount: allTasks.length,
                       itemBuilder: (context, index) {
@@ -54,7 +52,6 @@ class HomePage extends StatelessWidget {
                     );
                   }),
 
-                  // Section In Progress
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
                     child: CustomText(
@@ -80,7 +77,6 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
-          // Floating Button
           Positioned(
             bottom: 20,
             right: 20,

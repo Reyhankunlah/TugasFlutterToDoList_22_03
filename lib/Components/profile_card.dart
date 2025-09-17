@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'custom_color.dart';
+import 'custom_text.dart';
 
 class ProfileCard extends StatelessWidget {
   final String name;
@@ -29,37 +30,30 @@ class ProfileCard extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 40,
-              backgroundImage: AssetImage(imagePath), 
+              backgroundImage: AssetImage(imagePath),
               backgroundColor: CustomColor.blugrey.withOpacity(0.3),
             ),
-            const SizedBox(height: 12),
 
-            Text(
-              name,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: CustomColor.black,
-              ),
+            CustomText(
+              myText: name,
+              fontColor: CustomColor.black,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              align: TextAlign.center,
             ),
-            const SizedBox(height: 4),
 
-            Text(
-              "$kelas\n$absen",
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 14,
-                color: CustomColor.elementInactive1,
-              ),
+            CustomText(
+              myText: "$kelas\n$absen",
+              fontColor: CustomColor.elementInactive1,
+              fontSize: 14,
+              align: TextAlign.center,
             ),
-            const SizedBox(height: 4),
 
-            Text(
-              email,
-              style: const TextStyle(
-                fontSize: 14,
-                color: CustomColor.elementInactive2,
-              ),
+            CustomText(
+              myText: email,
+              fontColor: CustomColor.elementInactive2,
+              fontSize: 14,
+              align: TextAlign.center,
             ),
           ],
         ),
