@@ -29,7 +29,6 @@ class CustomHeader extends StatelessWidget {
           ),
         ),
 
-        // header decoration
         Positioned(
           left: 235,
           top: -231,

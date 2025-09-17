@@ -11,16 +11,16 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final cLogPage = Get.find<AuthController>();
-  final taskC = Get.put(TaskController);
+  final taskC = Get.put(TaskController()); 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, // biar aman saat keyboard muncul
+      resizeToAvoidBottomInset: true, 
       body: SafeArea(
         child: Stack(
           children: [
-            // ===== Background bulet-bulet =====
+           
             Positioned(
               top: -100,
               right: -100,
@@ -32,15 +32,14 @@ class LoginPage extends StatelessWidget {
               child: _circleBg(280, CustomColor.whiteShadows),
             ),
 
-            // ===== Main content =====
+           
             Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween, // gantinya Spacer
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // ===== Header =====
+                 
                   Column(
                     children: [
                       Row(
@@ -61,29 +60,25 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
 
-                  // ===== Form login =====
+                 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 10),
-                        child: CustomTextField(
-                          label: "Username",
-                          controller: cLogPage.input1,
-                          isNumber: false,
-                          borderColor: CustomColor.bluePrimary,
-                        ),
+                      CustomTextField(
+                        label: "Username",
+                        controller: cLogPage.input1,
+                        isNumber: false,
+                        borderColor: CustomColor.bluePrimary,
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 6),
-                        child: CustomTextField(
-                          label: "Password",
-                          controller: cLogPage.input2,
-                          isPassword: true,
-                          isNumber: false,
-                          borderColor: CustomColor.bluePrimary,
-                        ),
+                      const SizedBox(height: 10),
+                      CustomTextField(
+                        label: "Password",
+                        controller: cLogPage.input2,
+                        isPassword: true,
+                        isNumber: false,
+                        borderColor: CustomColor.bluePrimary,
                       ),
+                      const SizedBox(height: 6),
                       Align(
                         alignment: Alignment.centerRight,
                         child: InkWell(
@@ -98,13 +93,13 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
 
-                  // ===== Tombol Login & Create account =====
+                  
                   Column(
                     children: [
                       Obx(() {
                         return Container(
                           width: double.infinity,
-                          margin: const EdgeInsets.only(bottom: 10),
+                          margin: const EdgeInsets.only(bottom: 12),
                           child: CustomButton(
                             myText: cLogPage.isLoading.value
                                 ? "Processing..."
@@ -132,16 +127,14 @@ class LoginPage extends StatelessWidget {
                         fontColor: CustomColor.elementInactive2,
                         myText: 'Or continue with',
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 12),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _socialButton("assets/google_icon.png"),
-                            _socialButton("assets/facebook_icon.png"),
-                            _socialButton("assets/apple_icon.png"),
-                          ],
-                        ),
+                      const SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _socialButton("assets/google_icon.png"),
+                          _socialButton("assets/facebook_icon.png"),
+                          _socialButton("assets/apple_icon.png"),
+                        ],
                       ),
                     ],
                   ),

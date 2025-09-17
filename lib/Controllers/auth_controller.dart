@@ -7,8 +7,8 @@ class AuthController extends GetxController {
   final String password = "tinus";
   final String dummy = "asd";
 
-  final input1 = TextEditingController(); // username
-  final input2 = TextEditingController(); // password
+  final input1 = TextEditingController(); 
+  final input2 = TextEditingController();
 
   final isLoading = false.obs;
 
@@ -24,11 +24,11 @@ class AuthController extends GetxController {
     }
 
     isLoading.value = true;
-    // simulasi loading singkat (opsional)
+   
     await Future.delayed(Duration(milliseconds: 300));
     isLoading.value = false;
 
-    // pindah halaman
+    
     Get.offNamed(AppRoutes.mainNavPage);
   }
 

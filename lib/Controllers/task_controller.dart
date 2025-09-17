@@ -104,33 +104,6 @@ class TaskController extends GetxController {
       tasks.where((t) => t.status == TaskStatus.completed).toList();
 
   @override
-  void onInit() {
-    super.onInit();
-    if (tasks.isEmpty) {
-      tasks.addAll([
-        TaskModel(
-          title: "Dummy #1",
-          status: TaskStatus.notStarted,
-          dueDate: DateTime.now(),
-          tags: ["Work"],
-        ),
-        TaskModel(
-          title: "Dummy #2",
-          status: TaskStatus.inProgress,
-          dueDate: DateTime.now(),
-          tags: ["Personal"],
-        ),
-        TaskModel(
-          title: "Dummy #3",
-          status: TaskStatus.completed,
-          dueDate: DateTime.now(),
-          tags: ["Urgent"],
-        ),
-      ]);
-    }
-  }
-
-  @override
   void onClose() {
     titleC.dispose();
     super.onClose();

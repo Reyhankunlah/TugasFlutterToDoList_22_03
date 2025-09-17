@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Components/backDecoration.dart';
 import 'package:flutter_todolist/Components/custom_Header.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
+import 'package:flutter_todolist/Components/profile_card.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -10,16 +11,38 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColor.background,
-      body: Center(
-        child: Container(
-          child: Stack(
-            children: [
-              BackDecoration(),
+      body: Stack(
+        children: [
+           BackDecoration(),
 
-              CustomHeader(judulHeader: "Profile"),
-            ],
+           CustomHeader(judulHeader: 'Profile'),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 120),
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: const [
+                
+                Padding(padding: EdgeInsets.only(bottom: 16), child: ProfileCard(
+                  name: "Agustinus Galih Gumilang",
+                  kelas: "11 PPLG 02",
+                  absen: "03",
+                  email: "agustinus9141@gmail.com",
+                  imagePath: "assets/agustinus.jpg",
+                   )
+                ),
+                
+                ProfileCard(
+                  name: "Muhhamad Al Fa'iz",
+                  kelas: "11 PPLG 02",
+                  absen: "22",
+                  email: "faizgamer@gmail.com",
+                  imagePath: "assets/faiz.jpg",
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

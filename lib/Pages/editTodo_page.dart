@@ -20,13 +20,11 @@ class EditTodoPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Name Task
             CustomTextField(
               controller: edtContronller.titleC,
               label: "Name Task",
             ),
 
-            // Status
             CustomDropdown(
               label: "Status",
               value: edtContronller.status.value.label,
@@ -42,7 +40,6 @@ class EditTodoPage extends StatelessWidget {
               },
             ),
 
-            // Save Button
             Padding(
               padding: EdgeInsets.only(top: 24),
               child: CustomButton(

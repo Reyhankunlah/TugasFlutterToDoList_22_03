@@ -33,7 +33,6 @@ class ToDoPage extends StatelessWidget {
         children: [
           BackDecoration(),
 
-          // Konten Form
           SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Card(
@@ -46,7 +45,6 @@ class ToDoPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title
                     Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: CustomText(
@@ -57,7 +55,6 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // Task Name
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: CustomTextField(
@@ -66,7 +63,6 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // Status
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Obx(
@@ -74,7 +70,7 @@ class ToDoPage extends StatelessWidget {
                           label: "Status",
                           value: addtdController.statusLabel,
                           items: addtdController
-                              .statusOptions, // ✅ dari controller
+                              .statusOptions, 
                           onChanged: (val) {
                             if (val != null) {
                               addtdController.setStatusFromLabel(val);
@@ -84,7 +80,6 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // Due Date
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: CustomTextField(
@@ -110,7 +105,7 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // Tags
+                   
                     Padding(
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
                       child: Obx(
@@ -120,7 +115,7 @@ class ToDoPage extends StatelessWidget {
                               ? null
                               : addtdController.selectedTags.first,
                           items:
-                              addtdController.tagsOptions, // ✅ dari controller
+                              addtdController.tagsOptions,
                           onChanged: (val) {
                             addtdController.selectedTags.clear();
                             if (val != null) {
@@ -131,7 +126,7 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // Add Task Button
+                   
                     SizedBox(
                       width: double.infinity,
                       child: CustomButton(

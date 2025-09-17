@@ -6,26 +6,25 @@ import 'package:flutter_todolist/Models/task_model.dart';
 class EditTodoController extends GetxController {
   final taskC = Get.find<TaskController>();
 
-  // controller untuk form
+ 
   final titleC = TextEditingController();
   final dueDateC = TextEditingController();
 
-  // reactive values
+ 
   var status = TaskStatus.notStarted.obs;
   var selectedTag = "".obs;
   DateTime? pickedDate;
 
-  // index task yang sedang diedit
+ 
   late int taskIndex;
 
   @override
   void onInit() {
     super.onInit();
-    // ambil index dari argument
+    
     taskIndex = Get.arguments as int;
     final task = taskC.tasks[taskIndex];
 
-    // isi form dengan data lama
     titleC.text = task.title;
     status.value = task.status;
     if (task.dueDate != null) {
@@ -38,12 +37,10 @@ class EditTodoController extends GetxController {
     }
   }
 
-  // ganti status
   void changeStatus(TaskStatus newStatus) {
     status.value = newStatus;
   }
 
-  // pilih tanggal
   Future<void> pickDate(BuildContext context) async {
     final date = await showDatePicker(
       context: context,
@@ -57,7 +54,6 @@ class EditTodoController extends GetxController {
     }
   }
 
-  // simpan perubahan
   void save() {
     final updatedTask = TaskModel(
       title: titleC.text.trim(),
@@ -66,7 +62,6 @@ class EditTodoController extends GetxController {
       tags: selectedTag.value.isNotEmpty ? [selectedTag.value] : [],
     );
 
-    // update berdasarkan index
     taskC.tasks[taskIndex] = updatedTask;
     taskC.tasks.refresh();
 
