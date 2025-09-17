@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 
 class HistoryPage extends StatelessWidget {
   HistoryPage({super.key});
+
   final taskC = Get.find<TaskController>();
 
   @override
@@ -25,7 +26,6 @@ class HistoryPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Section Completed
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
                     child: CustomText(
@@ -34,7 +34,7 @@ class HistoryPage extends StatelessWidget {
                     ),
                   ),
                   Obx(() {
-                    final allTasks = [...taskC.completed];
+                    final allTasks = taskC.completed;
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,

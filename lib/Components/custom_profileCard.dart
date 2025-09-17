@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'custom_color.dart';
 import 'custom_text.dart';
 
-class ProfileCard extends StatelessWidget {
+class CustomProfilecard extends StatelessWidget {
   final String name;
   final String kelas;
   final String absen;
   final String email;
   final String imagePath;
 
-  const ProfileCard({
+  const CustomProfilecard({
     super.key,
     required this.name,
     required this.kelas,

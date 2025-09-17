@@ -37,8 +37,8 @@ class TaskController extends GetxController {
     return "${date.day} ${bulan[date.month - 1]} ${date.year}";
   }
 
-  String? get statusLabel {
-    switch (status.value) {
+  String getStatusLabel(TaskStatus status) {
+    switch (status) {
       case TaskStatus.notStarted:
         return "Not Started";
       case TaskStatus.inProgress:
@@ -49,12 +49,16 @@ class TaskController extends GetxController {
   }
 
   void setStatusFromLabel(String label) {
-    if (label == "Not Started") {
-      status.value = TaskStatus.notStarted;
-    } else if (label == "In Progress") {
-      status.value = TaskStatus.inProgress;
-    } else if (label == "Completed") {
-      status.value = TaskStatus.completed;
+    switch (label) {
+      case "Not Started":
+        status.value = TaskStatus.notStarted;
+        break;
+      case "In Progress":
+        status.value = TaskStatus.inProgress;
+        break;
+      case "Completed":
+        status.value = TaskStatus.completed;
+        break;
     }
   }
 
@@ -71,14 +75,15 @@ class TaskController extends GetxController {
       return;
     }
 
-    final task = TaskModel(
-      title: title,
-      status: status.value,
-      dueDate: dueDate,
-      tags: selectedTags.toList(),
+    tasks.add(
+      TaskModel(
+        title: title,
+        status: status.value,
+        dueDate: dueDate,
+        tags: selectedTags.toList(),
+      ),
     );
 
-    addTask(task);
     Get.back();
 
     Get.snackbar(
@@ -102,6 +107,11 @@ class TaskController extends GetxController {
       tasks.where((t) => t.status == TaskStatus.inProgress).toList();
   List<TaskModel> get completed =>
       tasks.where((t) => t.status == TaskStatus.completed).toList();
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   @override
   void onClose() {

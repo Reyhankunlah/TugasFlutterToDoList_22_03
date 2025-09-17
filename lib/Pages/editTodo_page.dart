@@ -20,11 +20,13 @@ class EditTodoPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomTextField(
-              controller: edtContronller.titleC,
-              label: "Name Task",
+            Padding(
+              padding: EdgeInsets.only(bottom: 16),
+              child: CustomTextField(
+                controller: edtContronller.titleC,
+                label: "Name Task",
+              ),
             ),
-
             CustomDropdown(
               label: "Status",
               value: edtContronller.status.value.label,

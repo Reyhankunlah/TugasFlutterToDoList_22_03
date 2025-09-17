@@ -32,7 +32,6 @@ class ToDoPage extends StatelessWidget {
       body: Stack(
         children: [
           BackDecoration(),
-
           SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Card(
@@ -68,9 +67,10 @@ class ToDoPage extends StatelessWidget {
                       child: Obx(
                         () => CustomDropdown(
                           label: "Status",
-                          value: addtdController.statusLabel,
-                          items: addtdController
-                              .statusOptions, 
+                          value: addtdController.getStatusLabel(
+                            addtdController.status.value,
+                          ),
+                          items: addtdController.statusOptions,
                           onChanged: (val) {
                             if (val != null) {
                               addtdController.setStatusFromLabel(val);
@@ -104,8 +104,6 @@ class ToDoPage extends StatelessWidget {
                         suffixIcon: const Icon(Icons.calendar_today),
                       ),
                     ),
-
-                   
                     Padding(
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
                       child: Obx(
@@ -114,8 +112,7 @@ class ToDoPage extends StatelessWidget {
                           value: addtdController.selectedTags.isEmpty
                               ? null
                               : addtdController.selectedTags.first,
-                          items:
-                              addtdController.tagsOptions,
+                          items: addtdController.tagsOptions,
                           onChanged: (val) {
                             addtdController.selectedTags.clear();
                             if (val != null) {
@@ -126,7 +123,6 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                   
                     SizedBox(
                       width: double.infinity,
                       child: CustomButton(
