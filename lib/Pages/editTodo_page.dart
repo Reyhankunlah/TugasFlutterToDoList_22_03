@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Components/custom_button.dart';
 import 'package:flutter_todolist/Components/custom_dropdown.dart';
 import 'package:flutter_todolist/Components/custom_textfield.dart';
 import 'package:flutter_todolist/Controllers/editTodo_Controller.dart';
@@ -8,14 +9,7 @@ import 'package:get/get.dart';
 class EditTodoPage extends StatelessWidget {
   EditTodoPage({super.key});
 
-  final c = Get.find<EditTodoController>();
-
-  final List<String> statusOptions = [
-    "Not Started",
-    "In Progress",
-    "Completed",
-  ];
-  final List<String> tagsOptions = ["Work", "Personal", "Urgent"];
+  final edtContronller = Get.find<EditTodoController>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,67 +20,37 @@ class EditTodoPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomTextField(controller: c.titleC, label: "Name Task"),
-            const SizedBox(height: 16),
-            Obx(
-              () => CustomDropdown(
-                label: "Status",
-                value: _mapStatusToString(c.status.value),
-                items: statusOptions,
-                onChanged: (val) {
-                  if (val != null) c.changeStatus(_mapStringToStatus(val));
-                },
-              ),
-            ),
-            const SizedBox(height: 16),
             CustomTextField(
-              controller: c.dueDateC,
-              label: "Due Date",
-              readOnly: true,
-              onTap: () => c.pickDate(context),
-              suffixIcon: const Icon(Icons.calendar_today),
+              controller: edtContronller.titleC,
+              label: "Name Task",
             ),
-            const SizedBox(height: 16),
-            Obx(
-              () => CustomDropdown(
-                label: "Tags",
-                value: c.selectedTag.value.isNotEmpty
-                    ? c.selectedTag.value
-                    : null,
-                items: tagsOptions,
-                onChanged: (val) {
-                  if (val != null) c.selectedTag.value = val;
-                },
-              ),
+
+            CustomDropdown(
+              label: "Status",
+              value: edtContronller.status.value.label,
+              items: TaskStatus.values.map((s) => s.label).toList(),
+              onChanged: (val) {
+                if (val != null) {
+                  final status = TaskStatus.values.firstWhere(
+                    (s) => s.label == val,
+                    orElse: () => TaskStatus.notStarted,
+                  );
+                  edtContronller.changeStatus(status);
+                }
+              },
             ),
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: c.save,
-                icon: const Icon(Icons.save),
-                label: const Text("Simpan Perubahan"),
+
+            Padding(
+              padding: EdgeInsets.only(top: 24),
+              child: CustomButton(
+                myText: "Simpan Perubahan",
+                onPressed: edtContronller.save,
+                icon: Icons.save,
               ),
             ),
           ],
         ),
       ),
     );
-  }
-
-  static String _mapStatusToString(TaskStatus status) {
-    return switch (status) {
-      TaskStatus.inProgress => "In Progress",
-      TaskStatus.completed => "Completed",
-      _ => "Not Started",
-    };
-  }
-
-  static TaskStatus _mapStringToStatus(String value) {
-    return switch (value) {
-      "In Progress" => TaskStatus.inProgress,
-      "Completed" => TaskStatus.completed,
-      _ => TaskStatus.notStarted,
-    };
   }
 }
