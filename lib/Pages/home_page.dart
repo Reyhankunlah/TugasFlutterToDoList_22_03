@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final taskC = Get.find<TaskController>(); // ✅ ambil instance yang sama
+  final taskC = Get.find<TaskController>();
 
   @override
   Widget build(BuildContext context) {

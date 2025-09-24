@@ -1,6 +1,7 @@
 class AppRoutes {
   static const mainNav = '/';
   static const loginPage = '/loginPage';
+  static const splashPage = '/splashPage';
   static const mainNavPage = '/mainNavPage';
   static const profilePage = '/profilePage';
   static const homePage = '/homePage';
