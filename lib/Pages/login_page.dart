@@ -64,14 +64,14 @@ class LoginPage extends StatelessWidget {
                     children: [
                       CustomTextField(
                         label: "Username",
-                        controller: cLogPage.input1,
+                        controller: cLogPage.inpUsername,
                         isNumber: false,
                         borderColor: CustomColor.bluePrimary,
                       ),
                       const SizedBox(height: 10),
                       CustomTextField(
                         label: "Password",
-                        controller: cLogPage.input2,
+                        controller: cLogPage.inpPassword,
                         isPassword: true,
                         isNumber: false,
                         borderColor: CustomColor.bluePrimary,

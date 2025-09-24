@@ -41,6 +41,7 @@ class CustomButton extends StatelessWidget {
       // 🔵 Tombol bulat
       if (isOutlined) {
         return OutlinedButton(
+          onPressed: onPressed,
           style: OutlinedButton.styleFrom(
             shape: const CircleBorder(),
             side: BorderSide(color: outlineColor, width: 2),
@@ -48,7 +49,7 @@ class CustomButton extends StatelessWidget {
             padding: EdgeInsets.zero, // biar icon center
             alignment: Alignment.center,
           ),
-          onPressed: onPressed,
+
           child: Icon(icon, color: iconColor, size: iconSize),
         );
       } else {
