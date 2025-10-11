@@ -3,11 +3,12 @@ import 'package:flutter_todolist/Bindings/authBinding.dart';
 import 'package:flutter_todolist/Bindings/editTodoBinding.dart';
 import 'package:flutter_todolist/Bindings/mainNavBinding.dart';
 import 'package:flutter_todolist/Bindings/splashBinding.dart';
-import 'package:flutter_todolist/Pages/editTodo_page.dart';
-import 'package:flutter_todolist/Pages/login_page.dart';
+import 'package:flutter_todolist/Pages/MobileScreen/editTodo_page.dart';
+import 'package:flutter_todolist/Pages/MobileScreen/login_page.dart';
 import 'package:flutter_todolist/Pages/nav/mainNav_page.dart';
-import 'package:flutter_todolist/Pages/splash_page.dart';
-import 'package:flutter_todolist/Pages/toDo_page.dart';
+import 'package:flutter_todolist/Pages/MobileScreen/splash_page.dart';
+import 'package:flutter_todolist/Pages/MobileScreen/toDo_page.dart';
+import 'package:flutter_todolist/Pages/nav/sideNav_page.dart';
 import 'package:flutter_todolist/Routes/routes.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -36,6 +37,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.mainNav,
       page: () => MainnavPage(),
+      binding: Mainnavbinding(),
+    ),
+    GetPage(
+      name: AppRoutes.navTransform,
+      page: () => SidenavPage(),
       binding: Mainnavbinding(),
     ),
   ];

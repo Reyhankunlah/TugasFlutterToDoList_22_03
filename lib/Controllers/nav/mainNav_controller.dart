@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todolist/Pages/history_page.dart';
-import 'package:flutter_todolist/Pages/home_page.dart';
-import 'package:flutter_todolist/Pages/profile_page.dart';
+import 'package:flutter_todolist/Pages/MobileScreen/history_page.dart';
+import 'package:flutter_todolist/Pages/MobileScreen/home_page.dart';
+import 'package:flutter_todolist/Pages/MobileScreen/profile_page.dart';
 import 'package:get/get.dart';
 
 class MainnavController extends GetxController {

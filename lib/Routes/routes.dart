@@ -8,4 +8,5 @@ class AppRoutes {
   static const historyPage = '/historyPage';
   static const toDoPage = '/todo';
   static const editToDoPage = '/editToDoPage';
+  static const navTransform = '/navTransform';
 }
