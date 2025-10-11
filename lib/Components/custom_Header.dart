@@ -15,7 +15,7 @@ class CustomHeader extends StatelessWidget {
           left: 0,
           top: 0,
           child: Container(
-            width: 367,
+            width: 450,
             height: 78,
             decoration: const ShapeDecoration(
               color: CustomColor.bluePrimary,

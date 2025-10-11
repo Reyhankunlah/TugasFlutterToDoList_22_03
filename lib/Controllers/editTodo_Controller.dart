@@ -1,39 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Database/db_halper.dart';
 import 'package:get/get.dart';
 import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:flutter_todolist/Models/task_model.dart';
 
 class EditTodoController extends GetxController {
   final taskC = Get.find<TaskController>();
+  final DBHelper dbHelper = DBHelper();
 
- 
   final titleC = TextEditingController();
   final dueDateC = TextEditingController();
 
- 
   var status = TaskStatus.notStarted.obs;
   var selectedTag = "".obs;
   DateTime? pickedDate;
 
- 
   late int taskIndex;
+  late TaskModel originalTask;
 
   @override
   void onInit() {
     super.onInit();
-    
-    taskIndex = Get.arguments as int;
-    final task = taskC.tasks[taskIndex];
 
-    titleC.text = task.title;
-    status.value = task.status;
-    if (task.dueDate != null) {
-      pickedDate = task.dueDate;
-      dueDateC.text =
-          "${task.dueDate!.day}-${task.dueDate!.month}-${task.dueDate!.year}";
+    taskIndex = Get.arguments as int;
+    originalTask = taskC.tasks[taskIndex];
+
+    titleC.text = originalTask.title;
+    status.value = originalTask.status;
+
+    if (originalTask.dueDate != null) {
+      pickedDate = originalTask.dueDate;
+      dueDateC.text = taskC.formatDate(originalTask.dueDate!);
     }
-    if (task.tags.isNotEmpty) {
-      selectedTag.value = task.tags.first;
+
+    if (originalTask.tags.isNotEmpty) {
+      selectedTag.value = originalTask.tags.first;
     }
   }
 
@@ -50,26 +51,38 @@ class EditTodoController extends GetxController {
     );
     if (date != null) {
       pickedDate = date;
-      dueDateC.text = "${date.day}-${date.month}-${date.year}";
+      dueDateC.text = taskC.formatDate(date);
     }
   }
 
-  void save() {
+  Future<void> save() async {
+    if (titleC.text.trim().isEmpty) {
+      Get.snackbar(
+        "Validasi",
+        "Judul tidak boleh kosong",
+        snackPosition: SnackPosition.TOP,
+        margin: const EdgeInsets.all(12),
+      );
+      return;
+    }
+
     final updatedTask = TaskModel(
+      id: originalTask.id,
       title: titleC.text.trim(),
       status: status.value,
       dueDate: pickedDate,
       tags: selectedTag.value.isNotEmpty ? [selectedTag.value] : [],
     );
 
-    taskC.tasks[taskIndex] = updatedTask;
-    taskC.tasks.refresh();
+    await dbHelper.updateTask(updatedTask);
+    await taskC.loadTasks();
 
     Get.back();
     Get.snackbar(
       "Sukses",
       "Task berhasil diperbarui",
       snackPosition: SnackPosition.TOP,
+      margin: const EdgeInsets.all(12),
     );
   }
 }
