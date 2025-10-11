@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 class ToDoPage extends StatelessWidget {
   ToDoPage({super.key});
 
-  final addtdController = Get.find<TaskController>();
+  final taskController = Get.find<TaskController>();
   final TextEditingController dateController = TextEditingController();
 
   @override
@@ -43,6 +43,7 @@ class ToDoPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // ===== TITLE =====
                     Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: CustomText(
@@ -53,32 +54,33 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
+                    // ===== TASK NAME =====
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: CustomTextField(
-                        controller: addtdController.titleC,
+                        controller: taskController.titleC,
                         label: "Task Name",
                       ),
                     ),
 
+                    // ===== STATUS =====
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Obx(
                         () => CustomDropdown(
                           label: "Status",
-                          value: addtdController.getStatusLabel(
-                            addtdController.status.value,
-                          ),
-                          items: addtdController.statusOptions,
+                          value: taskController.status.value.label,
+                          items: taskController.statusOptions,
                           onChanged: (val) {
                             if (val != null) {
-                              addtdController.setStatusFromLabel(val);
+                              taskController.setStatusFromLabel(val);
                             }
                           },
                         ),
                       ),
                     ),
 
+                    // ===== DUE DATE =====
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: CustomTextField(
@@ -89,13 +91,13 @@ class ToDoPage extends StatelessWidget {
                           final date = await showDatePicker(
                             context: context,
                             initialDate:
-                                addtdController.dueDate ?? DateTime.now(),
+                                taskController.dueDate ?? DateTime.now(),
                             firstDate: DateTime(2020),
                             lastDate: DateTime(2100),
                           );
                           if (date != null) {
-                            addtdController.dueDate = date;
-                            dateController.text = addtdController.formatDate(
+                            taskController.dueDate = date;
+                            dateController.text = taskController.formatDate(
                               date,
                             );
                           }
@@ -104,31 +106,33 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
+                    // ===== TAGS =====
                     Padding(
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
                       child: Obx(
                         () => CustomDropdown(
                           label: "Tags",
-                          value: addtdController.selectedTags.isEmpty
+                          value: taskController.selectedTags.isEmpty
                               ? null
-                              : addtdController.selectedTags.first,
-                          items: addtdController.tagsOptions,
+                              : taskController.selectedTags.first,
+                          items: taskController.tagsOptions,
                           onChanged: (val) {
-                            addtdController.selectedTags.clear();
+                            taskController.selectedTags.clear();
                             if (val != null) {
-                              addtdController.selectedTags.add(val);
+                              taskController.selectedTags.add(val);
                             }
                           },
                         ),
                       ),
                     ),
 
+                    // ===== BUTTON =====
                     SizedBox(
                       width: double.infinity,
                       child: CustomButton(
                         myText: 'ADD TASK',
-                        onPressed: () {
-                          addtdController.addFromForm();
+                        onPressed: () async {
+                          await taskController.addFromForm();
                         },
                       ),
                     ),

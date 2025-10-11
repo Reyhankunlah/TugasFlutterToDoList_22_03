@@ -14,12 +14,14 @@ extension TaskStatusExtension on TaskStatus {
 }
 
 class TaskModel {
+  final int? id;
   final String title;
   final TaskStatus status;
   final DateTime? dueDate;
   final List<String> tags;
 
   const TaskModel({
+    this.id,
     required this.title,
     this.status = TaskStatus.notStarted,
     this.dueDate,
@@ -27,12 +29,14 @@ class TaskModel {
   });
 
   TaskModel copyWith({
+    int? id,
     String? title,
     TaskStatus? status,
     DateTime? dueDate,
     List<String>? tags,
   }) {
     return TaskModel(
+      id: id ?? this.id,
       title: title ?? this.title,
       status: status ?? this.status,
       dueDate: dueDate ?? this.dueDate,

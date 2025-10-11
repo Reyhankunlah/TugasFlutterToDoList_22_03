@@ -31,6 +31,7 @@ class HistoryPage extends StatelessWidget {
                     child: CustomText(
                       myText: 'COMPLETED',
                       fontWeight: FontWeight.bold,
+                      fontSize: 19,
                     ),
                   ),
                   Obx(() {
@@ -38,10 +39,13 @@ class HistoryPage extends StatelessWidget {
                     if (allTasks.isEmpty) {
                       return Padding(
                         padding: const EdgeInsets.all(16),
-                        child: CustomText(
-                          myText: "Belum ada task yang selesai.",
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
+                        child: Container(
+                          margin: EdgeInsets.only(left: 6),
+                          child: CustomText(
+                            myText: "Belum ada task Completed.",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17,
+                          ),
                         ),
                       );
                     }

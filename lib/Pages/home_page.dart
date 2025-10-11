@@ -33,6 +33,7 @@ class HomePage extends StatelessWidget {
                     child: CustomText(
                       myText: 'NOT STARTED',
                       fontWeight: FontWeight.bold,
+                      fontSize: 19,
                     ),
                   ),
                   Obx(() {
@@ -40,10 +41,13 @@ class HomePage extends StatelessWidget {
                     if (allTasks.isEmpty) {
                       return Padding(
                         padding: const EdgeInsets.all(16),
-                        child: CustomText(
-                          myText: "Belum ada task Not Started.",
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
+                        child: Container(
+                          margin: EdgeInsets.only(left: 6),
+                          child: CustomText(
+                            myText: "Belum ada task Not Started.",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17,
+                          ),
                         ),
                       );
                     }
@@ -64,6 +68,7 @@ class HomePage extends StatelessWidget {
                     child: CustomText(
                       myText: 'IN PROGRESS',
                       fontWeight: FontWeight.bold,
+                      fontSize: 19,
                     ),
                   ),
                   Obx(() {
@@ -71,10 +76,13 @@ class HomePage extends StatelessWidget {
                     if (allTasks.isEmpty) {
                       return Padding(
                         padding: const EdgeInsets.all(16),
-                        child: CustomText(
-                          myText: "Belum ada task In Progress.",
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
+                        child: Container(
+                          margin: EdgeInsets.only(left: 6),
+                          child: CustomText(
+                            myText: "Belum ada task In Proggress.",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17,
+                          ),
                         ),
                       );
                     }
