@@ -71,9 +71,50 @@ class WidehomePage extends StatelessWidget {
                           ),
                     );
                   }),
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
+                    child: CustomText(
+                      myText: 'IN PROGGRESS',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 19,
+                    ),
+                  ),
+                  Obx(() {
+                    final allTasks = taskC.inProgress;
+                    if (allTasks.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Container(
+                          margin: EdgeInsets.only(left: 6),
+                          child: CustomText(
+                            myText: "Belum ada task In Proggress.",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17,
+                          ),
+                        ),
+                      );
+                    }
+                    return GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(16),
+                      itemCount: allTasks.length,
+                      itemBuilder: (context, index) {
+                        final t = allTasks[index];
+                        return TaskCard(task: t, showEdit: true);
+                      },
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: 1,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 20,
+                          ),
+                    );
+                  }),
                 ],
               ),
-              
             ),
           ),
           Positioned(
@@ -85,7 +126,9 @@ class WidehomePage extends StatelessWidget {
               isCircle: true,
               icon: Icons.add_rounded,
               iconSize: 30,
-              textColor: CustomColor.black,
+              textColor: CustomColor.white,
+              backColor: CustomColor.green,
+              iconColor: CustomColor.white,
             ),
           ),
         ],

@@ -17,140 +17,117 @@ class WideloginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final isTablet = size.width > 600; 
-
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      backgroundColor: CustomColor.background,
       body: SafeArea(
         child: Stack(
           children: [
-            // Background lingkaran
-            Positioned(
-              top: -100,
-              right: -100,
-              child: const CircleBg(size: 250, color: CustomColor.whiteShadows),
-            ),
-            Positioned(
-              bottom: -120,
-              left: -100,
-              child: const CircleBg(size: 280, color: CustomColor.whiteShadows),
-            ),
-
-            // Konten utama
-            Center(
-              child: Container(
-                width: isTablet ? size.width * 0.6 : size.width, // tengah untuk tablet
-                padding: EdgeInsets.symmetric(
-                  horizontal: isTablet ? 48 : 24,
-                  vertical: isTablet ? 32 : 16,
+            Column(
+              children: [
+                Container(
+                  child: Center(
+                    child: Image.asset("assets/tulist_logo.png", height: 70),
+                  ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Logo dan judul
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/tulist_logo.png", height: isTablet ? 100 : 70),
-                          ],
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          child: CustomText(
-                            myText: 'Login here',
-                            fontSize: isTablet ? 26 : 20,
-                            fontWeight: FontWeight.bold,
-                            fontColor: CustomColor.bluePrimary,
-                          ),
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 90),
+                    constraints: const BoxConstraints(maxHeight: 385),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 100,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 10,
+                          offset: Offset(0, 4),
                         ),
                       ],
                     ),
+                    child: Container(
+                      margin: EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        spacing: 12,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // Input fields
+                          CustomTextField(
+                            label: "Username",
+                            controller: cLogPage.inpUsername,
+                            isNumber: false,
+                            borderColor: CustomColor.bluePrimary,
+                          ),
+                          CustomTextField(
+                            label: "Password",
+                            controller: cLogPage.inpPassword,
+                            isPassword: true,
+                            isNumber: false,
+                            borderColor: CustomColor.bluePrimary,
+                          ),
 
-                    // Input fields
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CustomTextField(
-                          label: "Username",
-                          controller: cLogPage.inpUsername,
-                          isNumber: false,
-                          borderColor: CustomColor.bluePrimary,
-                        ),
-                        const SizedBox(height: 14),
-                        CustomTextField(
-                          label: "Password",
-                          controller: cLogPage.inpPassword,
-                          isPassword: true,
-                          isNumber: false,
-                          borderColor: CustomColor.bluePrimary,
-                        ),
-                        const SizedBox(height: 8),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: InkWell(
-                            onTap: () {},
-                            child: CustomText(
-                              myText: 'Forgot your password?',
-                              fontColor: CustomColor.blueSecondary,
-                              fontSize: 14,
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: InkWell(
+                              onTap: () {},
+                              child: CustomText(
+                                myText: 'Forgot your password?',
+                                fontColor: CustomColor.blueSecondary,
+                                fontSize: 14,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
 
-                    
-                    Column(
-                      children: [
-                        Obx(() {
-                          return Container(
-                            width: double.infinity,
-                            margin: const EdgeInsets.only(bottom: 12),
-                            child: CustomButton(
+                          // Tombol Login
+                          Obx(() {
+                            return CustomButton(
                               myText: cLogPage.isLoading.value
                                   ? "Processing..."
                                   : "LOGIN",
                               textColor: CustomColor.black,
                               onPressed: cLogPage.loginLogic,
                               isOutlined: true,
-                            ),
-                          );
-                        }),
-                        InkWell(
-                          onTap: () {},
-                          child: const CustomText(
-                            myText: 'Create new account',
-                            fontColor: CustomColor.elementInactive1,
-                          ),
-                        ),
-                      ],
-                    ),
+                            );
+                          }),
 
-                   
-                    Column(
-                      children: [
-                        const CustomText(
-                          fontColor: CustomColor.elementInactive2,
-                          myText: 'Or continue with',
-                        ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            SocialButton(asset: "assets/google_icon.png"),
-                            SocialButton(asset: "assets/facebook_icon.png"),
-                            SocialButton(asset: "assets/apple_icon.png"),
-                          ],
-                        ),
-                      ],
+                          Container(
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: const CustomText(
+                                    fontColor: CustomColor.elementInactive2,
+                                    myText: 'Or continue with',
+                                  ),
+                                ),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    SocialButton(
+                                      asset: "assets/google_icon.png",
+                                    ),
+                                    SocialButton(
+                                      asset: "assets/facebook_icon.png",
+                                    ),
+                                    SocialButton(
+                                      asset: "assets/apple_icon.png",
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
