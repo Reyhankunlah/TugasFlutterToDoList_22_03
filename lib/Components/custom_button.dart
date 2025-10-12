@@ -20,6 +20,8 @@ class CustomButton extends StatelessWidget {
   final Color iconColor;
   final double iconSize;
 
+  final Color backColor;
+
   const CustomButton({
     super.key,
     required this.myText,
@@ -33,6 +35,7 @@ class CustomButton extends StatelessWidget {
     this.icon,
     this.iconColor = CustomColor.black,
     this.iconSize = 20,
+    this.backColor = const Color.fromARGB(0, 255, 0, 0),
   });
 
   @override
@@ -46,10 +49,10 @@ class CustomButton extends StatelessWidget {
             shape: const CircleBorder(),
             side: BorderSide(color: outlineColor, width: 2),
             fixedSize: Size(circleSize, circleSize),
-            padding: EdgeInsets.zero, // biar icon center
-            alignment: Alignment.center,
+            padding: EdgeInsets.zero,
+            backgroundColor: backColor, // ✅ fix: aktifkan warna
+            foregroundColor: textColor, // warna teks/icon
           ),
-
           child: Icon(icon, color: iconColor, size: iconSize),
         );
       } else {
@@ -57,15 +60,17 @@ class CustomButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             shape: const CircleBorder(),
             fixedSize: Size(circleSize, circleSize),
-            padding: EdgeInsets.zero, // biar icon center
-            alignment: Alignment.center,
+            padding: EdgeInsets.zero,
+            backgroundColor: backColor, // ✅ fix: aktifkan warna
+            foregroundColor: textColor,
+            elevation: 3,
           ),
           onPressed: onPressed,
           child: Icon(icon, color: iconColor, size: iconSize),
         );
       }
     } else {
-      // ⬜ Tombol normal (rounded rectangle)
+      // ⬜ Tombol normal (rectangle)
       if (isOutlined) {
         return OutlinedButton(
           style: OutlinedButton.styleFrom(
@@ -74,6 +79,8 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius),
             ),
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+            backgroundColor: backColor, // ✅ fix
+            foregroundColor: textColor,
           ),
           onPressed: onPressed,
           child: _buildContent(textColor),
@@ -85,6 +92,9 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius),
             ),
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+            backgroundColor: backColor, // ✅ fix
+            foregroundColor: textColor,
+            elevation: 3,
           ),
           onPressed: onPressed,
           child: _buildContent(textColor),
@@ -99,11 +109,12 @@ class CustomButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, color: iconColor, size: iconSize),
-          const SizedBox(width: 8),
-          Text(
-            myText,
-            style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
-          ),
+          if (myText.isNotEmpty) const SizedBox(width: 8),
+          if (myText.isNotEmpty)
+            Text(
+              myText,
+              style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+            ),
         ],
       );
     } else {

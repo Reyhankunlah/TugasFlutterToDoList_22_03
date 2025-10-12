@@ -112,6 +112,8 @@ class HomePage extends StatelessWidget {
               icon: Icons.add_rounded,
               iconSize: 30,
               textColor: CustomColor.black,
+              backColor: CustomColor.green,
+              iconColor: CustomColor.white,
             ),
           ),
         ],

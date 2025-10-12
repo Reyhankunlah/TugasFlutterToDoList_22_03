@@ -2,9 +2,14 @@ import 'package:flutter_todolist/Bindings/TaskBinding.dart';
 import 'package:flutter_todolist/Bindings/authBinding.dart';
 import 'package:flutter_todolist/Bindings/editTodoBinding.dart';
 import 'package:flutter_todolist/Bindings/mainNavBinding.dart';
+import 'package:flutter_todolist/Bindings/responsiveBinding.dart';
 import 'package:flutter_todolist/Bindings/splashBinding.dart';
+import 'package:flutter_todolist/Controllers/auth_controller.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/editTodo_page.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/login_page.dart';
+import 'package:flutter_todolist/Pages/Transform/home_transform.dart';
+import 'package:flutter_todolist/Pages/Transform/login_transform.dart';
+import 'package:flutter_todolist/Pages/Transform/nav_transform.dart';
 import 'package:flutter_todolist/Pages/WideScreen/wideHome_page.dart';
 import 'package:flutter_todolist/Pages/WideScreen/wideLogin_page.dart';
 import 'package:flutter_todolist/Pages/nav/mainNav_page.dart';
@@ -43,8 +48,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.navTransform,
-      page: () => SidenavPage(),
-      binding: Mainnavbinding(),
+      page: () => NavTransform(),
+      bindings: [Responsivebinding(), Mainnavbinding()],
     ),
     GetPage(
       name: AppRoutes.wideHomePage,
@@ -55,6 +60,16 @@ class AppPages {
       name: AppRoutes.wideLoginPage,
       page: () => WideloginPage(),
       binding: Authbinding(),
+    ),
+    GetPage(
+      name: AppRoutes.loginTransform,
+      page: () => LoginTransform(),
+      bindings: [Responsivebinding(), Authbinding()],
+    ),
+    GetPage(
+      name: AppRoutes.homeTransform,
+      page: () => HomeTransform(),
+      bindings: [Responsivebinding(), Taskbinding()],
     ),
   ];
 }

@@ -5,6 +5,6 @@ class ResponsiveController extends GetxController {
   var isMobile = true.obs;
 
   void updateLayout(BoxConstraints constraints) {
-    isMobile.value = constraints.maxWidth < 640;
+    isMobile.value = constraints.maxWidth < 600;
   }
 }
