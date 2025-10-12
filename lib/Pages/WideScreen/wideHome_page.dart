@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Components/backDecoration.dart';
 import 'package:flutter_todolist/Components/custom_Header.dart';
+import 'package:flutter_todolist/Components/custom_button.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
 import 'package:flutter_todolist/Components/custom_text.dart';
 import 'package:flutter_todolist/Components/taskCard.dart';
 import 'package:flutter_todolist/Controllers/task_controller.dart';
+import 'package:flutter_todolist/Routes/routes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -21,7 +23,7 @@ class WidehomePage extends StatelessWidget {
       body: Stack(
         children: [
           BackDecoration(),
-          CustomHeader(judulHeader: "Wlee"),
+          CustomHeader(judulHeader: "Home"),
           Padding(
             padding: const EdgeInsets.only(top: 100),
             child: SingleChildScrollView(
@@ -71,6 +73,19 @@ class WidehomePage extends StatelessWidget {
                   }),
                 ],
               ),
+              
+            ),
+          ),
+          Positioned(
+            bottom: 20,
+            right: 20,
+            child: CustomButton(
+              myText: "",
+              onPressed: () => Get.toNamed(AppRoutes.toDoPage),
+              isCircle: true,
+              icon: Icons.add_rounded,
+              iconSize: 30,
+              textColor: CustomColor.black,
             ),
           ),
         ],

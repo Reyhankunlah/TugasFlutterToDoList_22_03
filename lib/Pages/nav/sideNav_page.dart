@@ -16,7 +16,7 @@ class SidenavPage extends StatelessWidget {
           children: [
             // === SIDE NAVIGATION BAR (selalu tampil) ===
             Container(
-              width: 90,
+              width: 70,
               color: CustomColor.bluePrimary,
               child: Column(
                 children: [
@@ -48,6 +48,7 @@ class SidenavPage extends StatelessWidget {
     );
   }
 
+  // === FUNGSI MEMBUAT ICON NAVIGASI ===
   Widget _buildNavIcon(IconData icon, int index) {
     return Obx(() {
       final bool isSelected = mainnavController.selectedIndex.value == index;
@@ -69,11 +70,12 @@ class SidenavPage extends StatelessWidget {
                 child: Icon(
                   icon,
                   size: 28,
-                  color: isSelected ? Colors.white : Colors.grey[700],
+                  color: Colors.white, 
                 ),
               ),
               const SizedBox(height: 4),
-              // indikator kecil di bawah icon
+
+              
               if (isSelected)
                 Container(
                   width: 6,

@@ -10,4 +10,5 @@ class AppRoutes {
   static const editToDoPage = '/editToDoPage';
   static const navTransform = '/navTransform';
   static const wideHomePage = '/wideHomePage';
+  static const wideLoginPage = '/wideLoginPage';
 }
