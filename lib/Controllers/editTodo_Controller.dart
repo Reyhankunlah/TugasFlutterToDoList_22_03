@@ -55,6 +55,27 @@ class EditTodoController extends GetxController {
     }
   }
 
+  Future<void> delete() async {
+    if (originalTask.id == null) {
+      Get.snackbar(
+        "Gagal",
+        "Task belum tersimpan di database.",
+        snackPosition: SnackPosition.TOP,
+        margin: const EdgeInsets.all(12),
+      );
+      return;
+    }
+
+    await taskC.deleteTask(originalTask.id!);
+    Get.back();
+    Get.snackbar(
+      "Sukses",
+      "Task berhasil dihapus.",
+      snackPosition: SnackPosition.TOP,
+      margin: const EdgeInsets.all(12),
+    );
+  }
+
   Future<void> save() async {
     if (titleC.text.trim().isEmpty) {
       Get.snackbar(
