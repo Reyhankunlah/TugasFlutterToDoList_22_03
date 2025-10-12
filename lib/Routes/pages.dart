@@ -54,7 +54,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.wideLoginPage,
       page: () => WideloginPage(),
-      binding: Taskbinding(),
+      binding: Authbinding(),
     ),
   ];
 }

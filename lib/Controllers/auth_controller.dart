@@ -30,7 +30,7 @@ class AuthController extends GetxController {
 
       await Future.delayed(Duration(milliseconds: 300));
       isLoading.value = false;
-      Get.offAllNamed(AppRoutes.mainNav);
+      Get.offAllNamed(AppRoutes.navTransform);
       return;
     }
   }
