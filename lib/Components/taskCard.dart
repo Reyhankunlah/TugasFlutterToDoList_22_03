@@ -169,7 +169,6 @@ class TaskCard extends StatelessWidget {
                         ],
                       ),
 
-                      if (isExpanded.value) ...[
                         const Divider(),
                         CustomText(
                           myText: "Tags: " + task.tags.join(', '),
@@ -200,8 +199,7 @@ class TaskCard extends StatelessWidget {
                               textColor: CustomColor.black,
                             ),
                           ),
-                      ],
-                    ],
+                      ], 
                   ),
 
                   Align(

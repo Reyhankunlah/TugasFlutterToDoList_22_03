@@ -12,7 +12,7 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: CustomText(myText: "INI SPLASH SCREEN")),
+      body: Center(child:  Image.asset("assets/tulist_logo.png", height: 70)),
     );
   }
 }
