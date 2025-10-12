@@ -10,17 +10,7 @@ import 'package:get/get.dart';
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
-  // Solusi 1: Dengan error handling
-  AuthController get authController {
-    try {
-      return Get.find<AuthController>();
-    } catch (e) {
-      // Jika tidak ditemukan, buat instance baru
-      return Get.put(AuthController());
-    }
-  }
-
-  // final authController = Get.find<AuthController>();
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +33,7 @@ class ProfilePage extends StatelessWidget {
                     absen: "03",
                     email: "agustinus9141@gmail.com",
                     imagePath: "assets/agustinus.jpg",
+                    backColor: CustomColor.blue,
                   ),
                 ),
                 const CustomProfilecard(
@@ -61,15 +52,13 @@ class ProfilePage extends StatelessWidget {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: const Text('Logout'),
-                          content: const Text(
-                            'Apakah Anda yakin ingin logout?',
-                          ),
+                          content: const Text('Are you sure want to logout?'),
                           actions: [
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: const Text('Batal'),
+                              child: const Text('Cancel'),
                             ),
                             TextButton(
                               onPressed: () async {

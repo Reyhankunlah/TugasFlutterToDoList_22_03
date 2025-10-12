@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Controllers/layout/responsive_controller.dart';
-import 'package:flutter_todolist/Pages/MobileScreen/login_page.dart';
-import 'package:flutter_todolist/Pages/WideScreen/wideLogin_page.dart';
+import 'package:flutter_todolist/Pages/MobileScreen/profile_page.dart';
+import 'package:flutter_todolist/Pages/WideScreen/wideProfile_page.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 
-class LoginTransform extends StatelessWidget {
-  LoginTransform({super.key});
+class ProfileTransform extends StatelessWidget {
+  ProfileTransform({super.key});
 
   final controller = Get.find<ResponsiveController>();
 
@@ -17,7 +17,7 @@ class LoginTransform extends StatelessWidget {
         builder: (context, constrains) {
           controller.updateLayout(constrains);
           return Obx(
-            () => controller.isMobile.value ? LoginPage() : WideloginPage(),
+            () => controller.isMobile.value ? ProfilePage() : WideprofilePage(),
           );
         },
       ),

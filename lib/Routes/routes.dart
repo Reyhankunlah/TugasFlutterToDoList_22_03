@@ -13,8 +13,12 @@ class AppRoutes {
   static const navTransform = '/navTransform';
   static const loginTransform = '/loginTransform';
   static const homeTransform = '/homeTransform';
+  static const historyTransform = '/historyTransform';
+  static const profileTransform = '/profileTransform';
 
   // WIDE SCREEN
   static const wideHomePage = '/wideHomePage';
   static const wideLoginPage = '/wideLoginPage';
+  static const wideHistoryPage = '/wideHistoryPage';
+  static const wideProfilePage = '/wideProfilePage';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Components/backDecoration.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
 import 'package:flutter_todolist/Components/custom_textfield.dart';
 import 'package:flutter_todolist/Controllers/auth_controller.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:flutter_todolist/components/custom_button.dart';
 import 'package:flutter_todolist/components/custom_text.dart';
 import 'package:flutter_todolist/components/social_button.dart';
-import 'package:flutter_todolist/components/circle_bg.dart';
 import 'package:get/get.dart';
 
 class WideloginPage extends StatelessWidget {
@@ -22,6 +22,7 @@ class WideloginPage extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
+            BackDecoration(),
             Column(
               children: [
                 Container(

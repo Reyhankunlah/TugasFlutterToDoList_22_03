@@ -38,6 +38,7 @@ class EditTodoPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
+              color: CustomColor.white,
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -81,14 +82,57 @@ class EditTodoPage extends StatelessWidget {
                       ),
                     ),
 
+                    Container(
+                      margin: EdgeInsets.only(top: 14),
+                      child: CustomButton(
+                        myText: "Delete",
+                        onPressed: edtController.delete,
+                        icon: Icons.delete_forever,
+                        backColor: CustomColor.red,
+                        iconColor: CustomColor.white,
+                        textColor: CustomColor.white,
+                        outlineColor: CustomColor.red,
+                        isOutlined: true,
+                      ),
+                    ),
+
                     Padding(
                       padding: const EdgeInsets.only(top: 24),
                       child: SizedBox(
                         width: double.infinity,
                         child: CustomButton(
                           myText: "Simpan Perubahan",
-                          onPressed: edtController.save,
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Delete'),
+                                  content: const Text(
+                                    'Are you sure want to delete task?',
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('Batal'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () async {
+                                        Navigator.of(context).pop();
+                                        edtController.delete();
+                                      },
+                                      child: const Text('Delete'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
                           icon: Icons.save,
+                          backColor: CustomColor.white,
+                          isOutlined: true,
                         ),
                       ),
                     ),
