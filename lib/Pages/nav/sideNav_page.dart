@@ -16,26 +16,11 @@ class SidenavPage extends StatelessWidget {
           children: [
             // === SIDE NAVIGATION BAR (selalu tampil) ===
             Container(
-              width: 100,
-              color: Colors.deepPurple.shade50,
+              width: 90,
+              color: CustomColor.bluePrimary,
               child: Column(
                 children: [
-                  // Header
-                  Container(
-                    height: 78,
-                    color: CustomColor.bluePrimary,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      "Menu",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 90),
 
                   // === Menu Icons ===
                   Expanded(

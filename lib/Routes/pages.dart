@@ -5,6 +5,7 @@ import 'package:flutter_todolist/Bindings/mainNavBinding.dart';
 import 'package:flutter_todolist/Bindings/splashBinding.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/editTodo_page.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/login_page.dart';
+import 'package:flutter_todolist/Pages/WideScreen/wideHome_page.dart';
 import 'package:flutter_todolist/Pages/nav/mainNav_page.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/splash_page.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/toDo_page.dart';
@@ -43,6 +44,11 @@ class AppPages {
       name: AppRoutes.navTransform,
       page: () => SidenavPage(),
       binding: Mainnavbinding(),
+    ),
+    GetPage(
+      name: AppRoutes.wideHomePage,
+      page: () => WidehomePage(),
+      binding: Taskbinding(),
     ),
   ];
 }
