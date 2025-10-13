@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todolist/Controllers/splash_controller.dart';
-import 'package:flutter_todolist/components/custom_text.dart';
+import 'package:flutter_todolist/Components/custom_color.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:flutter_todolist/Controllers/splash_controller.dart';
 
 class SplashPage extends StatelessWidget {
   SplashPage({super.key});
@@ -12,7 +11,15 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child:  Image.asset("assets/tulist_logo.png", height: 70)),
+      backgroundColor: CustomColor.white,
+      body: Center(
+        child: Image.asset(
+          "assets/tulist_anim.gif",
+          width: 200,
+          height: 200,
+          fit: BoxFit.contain,
+        ),
+      ),
     );
   }
 }

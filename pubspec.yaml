@@ -69,6 +69,7 @@ flutter:
     - assets/circle_shadows.png
     - assets/faiz.jpg
     - assets/agustinus.jpg
+    - assets/tulist_anim.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

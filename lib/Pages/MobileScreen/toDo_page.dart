@@ -34,6 +34,8 @@ class ToDoPage extends StatelessWidget {
           SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Card(
+              color: CustomColor.white,
+              shadowColor: CustomColor.blueSecondary,
               elevation: 6,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
@@ -43,7 +45,6 @@ class ToDoPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ===== TITLE =====
                     Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: CustomText(
@@ -54,7 +55,6 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // ===== TASK NAME =====
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: CustomTextField(
@@ -63,7 +63,6 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // ===== STATUS =====
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Obx(
@@ -80,7 +79,6 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // ===== DUE DATE =====
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: CustomTextField(
@@ -106,7 +104,6 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // ===== TAGS =====
                     Padding(
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
                       child: Obx(
@@ -126,11 +123,11 @@ class ToDoPage extends StatelessWidget {
                       ),
                     ),
 
-                    // ===== BUTTON =====
                     SizedBox(
                       width: double.infinity,
                       child: CustomButton(
                         myText: 'ADD TASK',
+                        backColor: CustomColor.white,
                         onPressed: () async {
                           await taskController.addFromForm();
                         },
