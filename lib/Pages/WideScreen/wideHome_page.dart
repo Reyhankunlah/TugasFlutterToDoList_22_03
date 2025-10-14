@@ -127,7 +127,7 @@ class WidehomePage extends StatelessWidget {
               icon: Icons.add_rounded,
               iconSize: 30,
               textColor: CustomColor.white,
-              backColor: CustomColor.green,
+              backColor: CustomColor.bluePrimary,
               iconColor: CustomColor.white,
             ),
           ),

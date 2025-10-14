@@ -15,8 +15,8 @@ class SplashPage extends StatelessWidget {
       body: Center(
         child: Image.asset(
           "assets/tulist_anim.gif",
-          width: 200,
-          height: 200,
+          width: 300,
+          height: 300,
           fit: BoxFit.contain,
         ),
       ),
