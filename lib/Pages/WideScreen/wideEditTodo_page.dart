@@ -1,0 +1,172 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Components/backDecoration.dart';
+import 'package:flutter_todolist/Components/custom_button.dart';
+import 'package:flutter_todolist/Components/custom_dropdown.dart';
+import 'package:flutter_todolist/Components/custom_text.dart';
+import 'package:flutter_todolist/Components/custom_color.dart';
+import 'package:flutter_todolist/Components/custom_textfield.dart';
+import 'package:flutter_todolist/Controllers/editTodo_Controller.dart';
+import 'package:flutter_todolist/Models/task_model.dart';
+import 'package:get/get.dart';
+
+class WideedittodoPage extends StatelessWidget {
+  WideedittodoPage({super.key});
+
+  final edtController = Get.find<EditTodoController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: CustomText(
+          myText: 'Edit Task',
+          fontWeight: FontWeight.bold,
+          fontColor: CustomColor.white,
+        ),
+        iconTheme: IconThemeData(color: CustomColor.white),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: CustomColor.bluePrimary,
+      ),
+      body: Stack(
+        children: [
+          BackDecoration(),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Gambar kiri
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: Image.asset("assets/tulist_logo.png", height: 250),
+                  ),
+                ),
+
+                const SizedBox(width: 40),
+
+                // Form kanan
+                Expanded(
+                  flex: 2,
+                  child: SingleChildScrollView(
+                    child: Card(
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      color: CustomColor.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 10,
+                                bottom: 10,
+                              ),
+                              child: CustomText(
+                                myText: "Edit Task Information",
+                                fontColor: CustomColor.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                            // TextField BIASA (tanpa CustomTextField)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: CustomTextField(
+                                controller: edtController.titleC,
+
+                                label: 'Task Name',
+                              ),
+                            ),
+
+                            // Status dropdown
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: Obx(
+                                () => CustomDropdown(
+                                  label: "Status",
+                                  value: edtController.status.value.label,
+                                  items: TaskStatus.values
+                                      .map((s) => s.label)
+                                      .toList(),
+                                  onChanged: (val) {
+                                    if (val != null) {
+                                      final status = TaskStatus.values
+                                          .firstWhere(
+                                            (s) => s.label == val,
+                                            orElse: () => TaskStatus.notStarted,
+                                          );
+                                      edtController.changeStatus(status);
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+
+                            // Tags dropdown
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: Obx(
+                                () => CustomDropdown(
+                                  label: "Tags",
+                                  value: edtController.selectedTag.value,
+                                  items: edtController.taskC.tagsOptions,
+                                  onChanged: (val) {
+                                    if (val != null) {
+                                      edtController.selectedTag.value = val;
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+
+                            // Tombol Delete
+                            Container(
+                              margin: const EdgeInsets.only(top: 14),
+                              child: CustomButton(
+                                myText: "Delete",
+                                onPressed: edtController.delete,
+                                icon: Icons.delete_forever,
+                                backColor: CustomColor.red,
+                                iconColor: CustomColor.white,
+                                textColor: CustomColor.white,
+                                outlineColor: CustomColor.red,
+                                isOutlined: true,
+                              ),
+                            ),
+
+                            // Tombol Simpan
+                            Padding(
+                              padding: const EdgeInsets.only(top: 24),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: CustomButton(
+                                  myText: "Simpan Perubahan",
+                                  onPressed: () {
+                                    edtController.save();
+                                  },
+                                  icon: Icons.save,
+                                  backColor: CustomColor.white,
+                                  isOutlined: true,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

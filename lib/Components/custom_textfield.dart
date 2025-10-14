@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final VoidCallback? onTap;
   final Widget? suffixIcon;
+  final double? width; // Tambahan untuk kontrol lebar opsional
 
   const CustomTextField({
     super.key,
@@ -20,24 +21,30 @@ class CustomTextField extends StatelessWidget {
     this.readOnly = false,
     this.onTap,
     this.suffixIcon,
+    this.width, // bisa diatur dari luar
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: isPassword,
-      keyboardType: isNumber ? TextInputType.number : TextInputType.text,
-      readOnly: readOnly,
-      onTap: onTap,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(borderSide: BorderSide()),
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide()),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor ?? Colors.blue, width: 2),
+    return SizedBox(
+      width: width ?? double.infinity, // kasih batas lebar pasti
+      child: TextFormField(
+        controller: controller,
+        obscureText: isPassword,
+        keyboardType: isNumber ? TextInputType.number : TextInputType.text,
+        readOnly: readOnly,
+        onTap: onTap,
+        decoration: InputDecoration(
+          labelText: label,
+          border: const OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: borderColor ?? Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: borderColor ?? Colors.blue, width: 2),
+          ),
+          suffixIcon: suffixIcon,
         ),
-        suffixIcon: suffixIcon,
       ),
     );
   }

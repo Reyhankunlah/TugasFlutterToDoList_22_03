@@ -42,6 +42,10 @@ class EditTodoController extends GetxController {
     status.value = newStatus;
   }
 
+  void changeTag(TaskStatus newTag) {
+    selectedTag.value = newTag.toString();
+  }
+
   Future<void> pickDate(BuildContext context) async {
     final date = await showDatePicker(
       context: context,

@@ -9,8 +9,10 @@ import 'package:flutter_todolist/Pages/MobileScreen/login_page.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/profile_page.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/splash_page.dart';
 import 'package:flutter_todolist/Pages/MobileScreen/toDo_page.dart';
+import 'package:flutter_todolist/Pages/Transform/editTodo_transform.dart';
 import 'package:flutter_todolist/Pages/Transform/history_transform.dart';
 import 'package:flutter_todolist/Pages/Transform/profile_transform.dart';
+import 'package:flutter_todolist/Pages/WideScreen/wideEditTodo_page.dart';
 import 'package:flutter_todolist/Pages/WideScreen/wideHome_page.dart';
 import 'package:flutter_todolist/Pages/WideScreen/wideLogin_page.dart';
 import 'package:flutter_todolist/Pages/Transform/home_transform.dart';
@@ -66,6 +68,11 @@ class AppPages {
       page: () => WideprofilePage(),
       binding: Authbinding(),
     ),
+    GetPage(
+      name: AppRoutes.wideEditTodoPage,
+      page: () => WideedittodoPage(),
+      binding: Edittodobinding(),
+    ),
 
     // 🔹 TRANSFORM SCREENS (Responsive)
     GetPage(
@@ -92,6 +99,11 @@ class AppPages {
       name: AppRoutes.profileTransform,
       page: () => ProfileTransform(),
       bindings: [Responsivebinding(), Authbinding()],
+    ),
+    GetPage(
+      name: AppRoutes.editTodoTransform,
+      page: () => EdittodoTransform(),
+      bindings: [Responsivebinding(), Taskbinding(), Edittodobinding()],
     ),
 
     // 🔹 NAVIGATION
