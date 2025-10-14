@@ -33,7 +33,7 @@ class ProfilePage extends StatelessWidget {
                     absen: "03",
                     email: "agustinus9141@gmail.com",
                     imagePath: "assets/agustinus.jpg",
-                    backColor: CustomColor.blue,
+                    backColor: CustomColor.white,
                   ),
                 ),
                 const CustomProfilecard(
@@ -42,6 +42,7 @@ class ProfilePage extends StatelessWidget {
                   absen: "22",
                   email: "faizgamer@gmail.com",
                   imagePath: "assets/faiz.jpg",
+                  backColor: CustomColor.white,
                 ),
                 CustomButton(
                   myText: "LOGOUT",
