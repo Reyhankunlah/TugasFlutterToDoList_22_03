@@ -9,16 +9,19 @@ class AppRoutes {
   static const historyPage = '/historyPage';
   static const toDoPage = '/todo';
   static const editToDoPage = '/editToDoPage';
+
   // TRANSFORM
   static const navTransform = '/navTransform';
   static const loginTransform = '/loginTransform';
   static const homeTransform = '/homeTransform';
   static const historyTransform = '/historyTransform';
   static const profileTransform = '/profileTransform';
+  static const editTodoTransform = '/editTodoTransform';
 
   // WIDE SCREEN
   static const wideHomePage = '/wideHomePage';
   static const wideLoginPage = '/wideLoginPage';
   static const wideHistoryPage = '/wideHistoryPage';
   static const wideProfilePage = '/wideProfilePage';
+  static const wideEditTodoPage = '/wideEditTodoPage';
 }

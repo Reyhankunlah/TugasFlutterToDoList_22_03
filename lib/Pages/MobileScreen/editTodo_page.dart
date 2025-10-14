@@ -82,6 +82,22 @@ class EditTodoPage extends StatelessWidget {
                       ),
                     ),
 
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Obx(
+                        () => CustomDropdown(
+                          label: "Tags",
+                          value: edtController.selectedTag.value,
+                          items: edtController.taskC.tagsOptions,
+                          onChanged: (val) {
+                            if (val != null) {
+                              edtController.selectedTag.value = val;
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+
                     Container(
                       margin: EdgeInsets.only(top: 14),
                       child: CustomButton(
@@ -103,32 +119,7 @@ class EditTodoPage extends StatelessWidget {
                         child: CustomButton(
                           myText: "Simpan Perubahan",
                           onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Delete'),
-                                  content: const Text(
-                                    'Are you sure want to delete task?',
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text('Batal'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () async {
-                                        Navigator.of(context).pop();
-                                        edtController.delete();
-                                      },
-                                      child: const Text('Delete'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
+                            edtController.save();
                           },
                           icon: Icons.save,
                           backColor: CustomColor.white,

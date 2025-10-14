@@ -102,7 +102,7 @@ class TaskCard extends StatelessWidget {
                               final index = taskC.tasks.indexOf(task);
                               if (index != -1) {
                                 Get.toNamed(
-                                  AppRoutes.editToDoPage,
+                                  AppRoutes.editTodoTransform,
                                   arguments: index,
                                 );
                               }
@@ -196,7 +196,7 @@ class TaskCard extends StatelessWidget {
                             final index = taskC.tasks.indexOf(task);
                             if (index != -1) {
                               Get.toNamed(
-                                AppRoutes.editToDoPage,
+                                AppRoutes.editTodoTransform,
                                 arguments: index,
                               );
                             }
