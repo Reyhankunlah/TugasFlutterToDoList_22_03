@@ -17,6 +17,7 @@ class AppRoutes {
   static const historyTransform = '/historyTransform';
   static const profileTransform = '/profileTransform';
   static const editTodoTransform = '/editTodoTransform';
+  static const todoTransform = '/todoTransform';
 
   // WIDE SCREEN
   static const wideHomePage = '/wideHomePage';
@@ -24,4 +25,5 @@ class AppRoutes {
   static const wideHistoryPage = '/wideHistoryPage';
   static const wideProfilePage = '/wideProfilePage';
   static const wideEditTodoPage = '/wideEditTodoPage';
+  static const wideTodoPage = '/widetodoPage';
 }

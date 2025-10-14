@@ -40,7 +40,7 @@ class WideedittodoPage extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Center(
-                    child: Image.asset("assets/tulist_logo.png", height: 250),
+                    child: Image.asset("assets/tulist_logo.png", height: 200),
                   ),
                 ),
 
@@ -74,12 +74,11 @@ class WideedittodoPage extends StatelessWidget {
                               ),
                             ),
 
-                            // TextField BIASA (tanpa CustomTextField)
+                            // TextField
                             Padding(
                               padding: const EdgeInsets.only(top: 16),
                               child: CustomTextField(
                                 controller: edtController.titleC,
-
                                 label: 'Task Name',
                               ),
                             ),
@@ -96,11 +95,10 @@ class WideedittodoPage extends StatelessWidget {
                                       .toList(),
                                   onChanged: (val) {
                                     if (val != null) {
-                                      final status = TaskStatus.values
-                                          .firstWhere(
-                                            (s) => s.label == val,
-                                            orElse: () => TaskStatus.notStarted,
-                                          );
+                                      final status = TaskStatus.values.firstWhere(
+                                        (s) => s.label == val,
+                                        orElse: () => TaskStatus.notStarted,
+                                      );
                                       edtController.changeStatus(status);
                                     }
                                   },
@@ -124,36 +122,42 @@ class WideedittodoPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-
-                            // Tombol Delete
-                            Container(
-                              margin: const EdgeInsets.only(top: 14),
-                              child: CustomButton(
-                                myText: "Delete",
-                                onPressed: edtController.delete,
-                                icon: Icons.delete_forever,
-                                backColor: CustomColor.red,
-                                iconColor: CustomColor.white,
-                                textColor: CustomColor.white,
-                                outlineColor: CustomColor.red,
-                                isOutlined: true,
-                              ),
-                            ),
-
-                            // Tombol Simpan
+                            
+                            // Tombol sejajar (Save & Delete)
                             Padding(
-                              padding: const EdgeInsets.only(top: 24),
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: CustomButton(
-                                  myText: "Simpan Perubahan",
-                                  onPressed: () {
-                                    edtController.save();
-                                  },
-                                  icon: Icons.save,
-                                  backColor: CustomColor.white,
-                                  isOutlined: true,
-                                ),
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  // Tombol Save
+                                  CustomButton(
+                                      myText: "Delete",
+                                      onPressed: edtController.delete,
+                                      icon: Icons.delete_forever,
+                                      backColor: CustomColor.red,
+                                      iconColor: CustomColor.white,
+                                      textColor: CustomColor.white,
+                                      outlineColor: CustomColor.red,
+                                      isOutlined: true
+                                      ),
+
+                                  
+
+                                  // Tombol Delete
+                                  Container(
+                                    margin: EdgeInsets.only(left: 12),
+                                    child:  CustomButton(
+                                    myText: "SAVE",
+                                    onPressed: () {
+                                      edtController.save();
+                                    },
+                                    icon: Icons.save,
+                                    backColor: CustomColor.white,
+                                    isOutlined: true,
+                                  ),
+                                    ),
+                                
+                                ],
                               ),
                             ),
                           ],
