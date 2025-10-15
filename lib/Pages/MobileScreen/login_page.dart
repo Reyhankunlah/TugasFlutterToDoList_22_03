@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Components/backDecoration.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
 import 'package:flutter_todolist/Components/custom_textfield.dart';
 import 'package:flutter_todolist/Controllers/auth_controller.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:flutter_todolist/components/custom_button.dart';
 import 'package:flutter_todolist/components/custom_text.dart';
 import 'package:flutter_todolist/components/social_button.dart';
-import 'package:flutter_todolist/components/circle_bg.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
@@ -18,21 +18,12 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColor.whiteShadows,
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Stack(
           children: [
-            Positioned(
-              top: -100,
-              right: -100,
-              child: const CircleBg(size: 250, color: CustomColor.whiteShadows),
-            ),
-            Positioned(
-              bottom: -120,
-              left: -100,
-              child: const CircleBg(size: 280, color: CustomColor.whiteShadows),
-            ),
-
+            BackDecoration(),
             Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -41,16 +32,16 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset("assets/tulist_logo.png", height: 70),
-                        ],
+                      Center(
+                        child: Image.asset(
+                          "assets/tulist_logo.png",
+                          height: 70,
+                        ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 10),
                         child: CustomText(
-                          myText: 'Login here',
+                          myText: 'Welcome Back!',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           fontColor: CustomColor.bluePrimary,

@@ -7,15 +7,12 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double radius;
 
-  // Outline
   final bool isOutlined;
   final Color outlineColor;
 
-  // Circle
   final bool isCircle;
   final double circleSize;
 
-  // Icon
   final IconData? icon;
   final Color iconColor;
   final double iconSize;
@@ -41,7 +38,6 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isCircle) {
-      // 🔵 Tombol bulat
       if (isOutlined) {
         return OutlinedButton(
           onPressed: onPressed,
@@ -50,8 +46,8 @@ class CustomButton extends StatelessWidget {
             side: BorderSide(color: outlineColor, width: 2),
             fixedSize: Size(circleSize, circleSize),
             padding: EdgeInsets.zero,
-            backgroundColor: backColor, // ✅ fix: aktifkan warna
-            foregroundColor: textColor, // warna teks/icon
+            backgroundColor: backColor,
+            foregroundColor: textColor,
           ),
           child: Icon(icon, color: iconColor, size: iconSize),
         );
@@ -61,7 +57,7 @@ class CustomButton extends StatelessWidget {
             shape: const CircleBorder(),
             fixedSize: Size(circleSize, circleSize),
             padding: EdgeInsets.zero,
-            backgroundColor: backColor, // ✅ fix: aktifkan warna
+            backgroundColor: backColor,
             foregroundColor: textColor,
             elevation: 3,
           ),
@@ -70,7 +66,6 @@ class CustomButton extends StatelessWidget {
         );
       }
     } else {
-      // ⬜ Tombol normal (rectangle)
       if (isOutlined) {
         return OutlinedButton(
           style: OutlinedButton.styleFrom(
@@ -79,7 +74,7 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius),
             ),
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
-            backgroundColor: backColor, // ✅ fix
+            backgroundColor: backColor,
             foregroundColor: textColor,
           ),
           onPressed: onPressed,

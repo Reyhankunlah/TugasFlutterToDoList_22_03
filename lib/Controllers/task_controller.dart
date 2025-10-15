@@ -15,14 +15,12 @@ class TaskController extends GetxController {
 
   final List<String> tagsOptions = ["Work", "Personal", "Urgent"];
 
-  // 🔹 List status yang bisa dipilih di dropdown
   final List<String> statusOptions = [
     "Not Started",
     "In Progress",
     "Completed",
   ];
 
-  // 🔹 Method untuk set status berdasarkan label dropdown
   void setStatusFromLabel(String label) {
     switch (label) {
       case "In Progress":
@@ -36,7 +34,6 @@ class TaskController extends GetxController {
     }
   }
 
-  // 🔹 Daftar nama bulan dalam Bahasa Indonesia
   final List<String> bulan = const [
     "Januari",
     "Februari",
@@ -52,7 +49,6 @@ class TaskController extends GetxController {
     "Desember",
   ];
 
-  // 🔹 Fungsi untuk format tanggal ke bentuk "10 Oktober 2025"
   String formatDate(DateTime date) {
     return "${date.day} ${bulan[date.month - 1]} ${date.year}";
   }
@@ -63,9 +59,7 @@ class TaskController extends GetxController {
     loadTasks();
   }
 
-  // =========================
   // CRUD LOGIC
-  // =========================
 
   Future<void> loadTasks() async {
     final data = await dbHelper.getTasks();
@@ -107,7 +101,6 @@ class TaskController extends GetxController {
       margin: const EdgeInsets.all(12),
     );
 
-    // Reset form
     titleC.clear();
     dueDate = null;
     selectedTags.clear();
@@ -138,9 +131,6 @@ class TaskController extends GetxController {
   }
 }
 
-// =============================
-// 🔹 Extension untuk enum label
-// =============================
 extension TaskStatusExtension on TaskStatus {
   String get label {
     switch (this) {

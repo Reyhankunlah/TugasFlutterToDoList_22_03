@@ -36,7 +36,6 @@ class WideedittodoPage extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Gambar kiri
                 Expanded(
                   flex: 1,
                   child: Center(
@@ -46,7 +45,6 @@ class WideedittodoPage extends StatelessWidget {
 
                 const SizedBox(width: 40),
 
-                // Form kanan
                 Expanded(
                   flex: 2,
                   child: SingleChildScrollView(
@@ -74,7 +72,6 @@ class WideedittodoPage extends StatelessWidget {
                               ),
                             ),
 
-                            // TextField
                             Padding(
                               padding: const EdgeInsets.only(top: 16),
                               child: CustomTextField(
@@ -83,7 +80,6 @@ class WideedittodoPage extends StatelessWidget {
                               ),
                             ),
 
-                            // Status dropdown
                             Padding(
                               padding: const EdgeInsets.only(top: 16),
                               child: Obx(
@@ -95,10 +91,11 @@ class WideedittodoPage extends StatelessWidget {
                                       .toList(),
                                   onChanged: (val) {
                                     if (val != null) {
-                                      final status = TaskStatus.values.firstWhere(
-                                        (s) => s.label == val,
-                                        orElse: () => TaskStatus.notStarted,
-                                      );
+                                      final status = TaskStatus.values
+                                          .firstWhere(
+                                            (s) => s.label == val,
+                                            orElse: () => TaskStatus.notStarted,
+                                          );
                                       edtController.changeStatus(status);
                                     }
                                   },
@@ -106,7 +103,6 @@ class WideedittodoPage extends StatelessWidget {
                               ),
                             ),
 
-                            // Tags dropdown
                             Padding(
                               padding: const EdgeInsets.only(top: 16),
                               child: Obx(
@@ -122,41 +118,35 @@ class WideedittodoPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            
-                            // Tombol sejajar (Save & Delete)
+
                             Padding(
                               padding: const EdgeInsets.only(top: 20),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  // Tombol Save
                                   CustomButton(
-                                      myText: "Delete",
-                                      onPressed: edtController.delete,
-                                      icon: Icons.delete_forever,
-                                      backColor: CustomColor.red,
-                                      iconColor: CustomColor.white,
-                                      textColor: CustomColor.white,
-                                      outlineColor: CustomColor.red,
-                                      isOutlined: true
-                                      ),
-
-                                  
-
-                                  // Tombol Delete
-                                  Container(
-                                    margin: EdgeInsets.only(left: 12),
-                                    child:  CustomButton(
-                                    myText: "SAVE",
-                                    onPressed: () {
-                                      edtController.save();
-                                    },
-                                    icon: Icons.save,
-                                    backColor: CustomColor.white,
+                                    myText: "Delete",
+                                    onPressed: edtController.delete,
+                                    icon: Icons.delete_forever,
+                                    backColor: CustomColor.red,
+                                    iconColor: CustomColor.white,
+                                    textColor: CustomColor.white,
+                                    outlineColor: CustomColor.red,
                                     isOutlined: true,
                                   ),
+
+                                  Container(
+                                    margin: EdgeInsets.only(left: 12),
+                                    child: CustomButton(
+                                      myText: "SAVE",
+                                      onPressed: () {
+                                        edtController.save();
+                                      },
+                                      icon: Icons.save,
+                                      backColor: CustomColor.white,
+                                      isOutlined: true,
                                     ),
-                                
+                                  ),
                                 ],
                               ),
                             ),

@@ -15,7 +15,6 @@ class DBHelper {
     return _db!;
   }
 
-  // Inisialisasi database
   Future<Database> initDb() async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, 'tasks.db');

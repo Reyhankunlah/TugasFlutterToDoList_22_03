@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
+import 'package:flutter_todolist/Components/custom_navIcon.dart';
 import 'package:flutter_todolist/Controllers/nav/mainNav_controller.dart';
 import 'package:get/get.dart';
 
@@ -14,11 +15,10 @@ class MainnavPage extends StatelessWidget {
       () => Scaffold(
         body: mainnavController.pages[mainnavController.selectedIndex.value],
 
-        // === BOTTOM NAVIGATION BAR ===
         bottomNavigationBar: Container(
           height: 60,
           decoration: BoxDecoration(
-            color: CustomColor.blueSecondary,
+            color: CustomColor.bluePrimary,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.2),
@@ -30,54 +30,31 @@ class MainnavPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildNavIcon(Icons.house, 0),
-              _buildNavIcon(Icons.history, 1),
-              _buildNavIcon(Icons.person, 2),
+              Obx(
+                () => CustomNavIcon(
+                  icon: Icons.house,
+                  isSelected: mainnavController.selectedIndex.value == 0,
+                  onTap: () => mainnavController.changeIndex(0),
+                ),
+              ),
+              Obx(
+                () => CustomNavIcon(
+                  icon: Icons.history,
+                  isSelected: mainnavController.selectedIndex.value == 1,
+                  onTap: () => mainnavController.changeIndex(1),
+                ),
+              ),
+              Obx(
+                () => CustomNavIcon(
+                  icon: Icons.person,
+                  isSelected: mainnavController.selectedIndex.value == 2,
+                  onTap: () => mainnavController.changeIndex(2),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  // === FUNGSI MEMBUAT ICON NAVIGASI ===
-  Widget _buildNavIcon(IconData icon, int index) {
-    return Obx(() {
-      final bool isSelected = mainnavController.selectedIndex.value == index;
-
-      return GestureDetector(
-        onTap: () => mainnavController.changeIndex(index),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 4),
-            Container(
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? CustomColor.bluePrimary
-                    : Colors.transparent,
-                shape: BoxShape.circle,
-              ),
-              padding: const EdgeInsets.all(10),
-              child: Icon(
-                icon,
-                size: 25,
-                color: Colors.white,
-              ),
-            ),
-            if (isSelected)
-              Container(
-                margin: const EdgeInsets.only(top: 4),
-                width: 6,
-                height: 6,
-                decoration: const BoxDecoration(
-                  color: CustomColor.bluePrimary,
-                  shape: BoxShape.circle,
-                ),
-              ),
-          ],
-        ),
-      );
-    });
   }
 }

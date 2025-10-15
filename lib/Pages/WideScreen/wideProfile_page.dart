@@ -27,7 +27,6 @@ class WideprofilePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Bagian kartu profil
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Center(

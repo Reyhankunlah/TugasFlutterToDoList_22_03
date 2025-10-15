@@ -98,34 +98,34 @@ class EditTodoPage extends StatelessWidget {
                       ),
                     ),
 
-                    Container(
-                      margin: EdgeInsets.only(top: 14),
-                      child: CustomButton(
-                        myText: "Delete",
-                        onPressed: edtController.delete,
-                        icon: Icons.delete_forever,
-                        backColor: CustomColor.red,
-                        iconColor: CustomColor.white,
-                        textColor: CustomColor.white,
-                        outlineColor: CustomColor.red,
-                        isOutlined: true,
-                      ),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(top: 24),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: CustomButton(
-                          myText: "Simpan Perubahan",
-                          onPressed: () {
-                            edtController.save();
-                          },
-                          icon: Icons.save,
-                          backColor: CustomColor.white,
-                          isOutlined: true,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      spacing: 12,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 14),
+                          child: CustomButton(
+                            myText: "Delete",
+                            onPressed: edtController.delete,
+                            icon: Icons.delete_forever,
+                            backColor: CustomColor.red,
+                            iconColor: CustomColor.white,
+                            textColor: CustomColor.white,
+                            outlineColor: CustomColor.red,
+                            isOutlined: true,
+                          ),
                         ),
-                      ),
+                        Container(
+                          margin: EdgeInsets.only(top: 14),
+                          child: CustomButton(
+                            myText: "Save",
+                            onPressed: edtController.save,
+                            icon: Icons.save,
+                            backColor: CustomColor.white,
+                            isOutlined: true,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
