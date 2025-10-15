@@ -27,7 +27,6 @@ class WideprofilePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Bagian kartu profil
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Center(
@@ -60,39 +59,46 @@ class WideprofilePage extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  child: CustomButton(
-                    myText: "LOGOUT",
-                    textColor: CustomColor.black,
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Logout'),
-                            content: const Text(
-                              'Apakah Anda yakin ingin logout?',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('Batal'),
+                  padding: const EdgeInsets.only(
+                    bottom: 30,
+                    left: 30,
+                    right: 30,
+                  ),
+                  child: Container(
+                    width: double.infinity,
+                    child: CustomButton(
+                      myText: "LOGOUT",
+                      textColor: CustomColor.black,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Logout'),
+                              content: const Text(
+                                'Apakah Anda yakin ingin logout?',
                               ),
-                              TextButton(
-                                onPressed: () async {
-                                  Navigator.of(context).pop();
-                                  authController.logout();
-                                },
-                                child: const Text('Logout'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    isOutlined: true,
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Batal'),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    Navigator.of(context).pop();
+                                    authController.logout();
+                                  },
+                                  child: const Text('Logout'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      isOutlined: true,
+                    ),
                   ),
                 ),
               ],

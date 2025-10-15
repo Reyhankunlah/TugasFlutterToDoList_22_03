@@ -49,17 +49,3 @@ class AuthController extends GetxController {
     super.onClose();
   }
 }
-
-// ALTERNATIF SOLUSI - ProfilePage dengan Get.put
-class ProfilePageAlternative extends StatelessWidget {
-  ProfilePageAlternative({super.key});
-
-  // Solusi 2: Langsung put jika belum ada
-  final cLogPage = Get.put(AuthController(), permanent: true);
-
-  @override
-  Widget build(BuildContext context) {
-    // ... sama seperti di atas
-    return Container(); // placeholder
-  }
-}

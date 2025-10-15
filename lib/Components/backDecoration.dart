@@ -21,7 +21,6 @@ class BackDecoration extends StatelessWidget {
           ),
         ),
 
-        // bulet kanan atas
         Positioned(
           left: 230,
           top: -253,

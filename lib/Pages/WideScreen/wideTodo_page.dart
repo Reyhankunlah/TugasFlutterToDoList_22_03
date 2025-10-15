@@ -35,7 +35,6 @@ class WidetodoPage extends StatelessWidget {
             builder: (context, constraints) {
               return Row(
                 children: [
-                  // Bagian kiri - Logo atau ilustrasi
                   Expanded(
                     flex: 4,
                     child: Padding(
@@ -51,7 +50,6 @@ class WidetodoPage extends StatelessWidget {
                     ),
                   ),
 
-                  // Bagian kanan - Form
                   Expanded(
                     flex: 6,
                     child: SingleChildScrollView(
@@ -72,8 +70,10 @@ class WidetodoPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 10, bottom: 10),
+                                    padding: const EdgeInsets.only(
+                                      top: 10,
+                                      bottom: 10,
+                                    ),
                                     child: CustomText(
                                       myText: "Task Information",
                                       fontColor: CustomColor.black,
@@ -95,11 +95,14 @@ class WidetodoPage extends StatelessWidget {
                                     child: Obx(
                                       () => CustomDropdown(
                                         label: "Status",
-                                        value: taskController.status.value.label,
+                                        value:
+                                            taskController.status.value.label,
                                         items: taskController.statusOptions,
                                         onChanged: (val) {
                                           if (val != null) {
-                                            taskController.setStatusFromLabel(val);
+                                            taskController.setStatusFromLabel(
+                                              val,
+                                            );
                                           }
                                         },
                                       ),
@@ -116,33 +119,42 @@ class WidetodoPage extends StatelessWidget {
                                         final date = await showDatePicker(
                                           context: context,
                                           initialDate:
-                                              taskController.dueDate ?? DateTime.now(),
+                                              taskController.dueDate ??
+                                              DateTime.now(),
                                           firstDate: DateTime(2020),
                                           lastDate: DateTime(2100),
                                         );
                                         if (date != null) {
                                           taskController.dueDate = date;
-                                          dateController.text =
-                                              taskController.formatDate(date);
+                                          dateController.text = taskController
+                                              .formatDate(date);
                                         }
                                       },
-                                      suffixIcon: const Icon(Icons.calendar_today),
+                                      suffixIcon: const Icon(
+                                        Icons.calendar_today,
+                                      ),
                                     ),
                                   ),
 
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 16, bottom: 16),
+                                    padding: const EdgeInsets.only(
+                                      top: 16,
+                                      bottom: 16,
+                                    ),
                                     child: Obx(
                                       () => CustomDropdown(
                                         label: "Tags",
-                                        value: taskController.selectedTags.isEmpty
+                                        value:
+                                            taskController.selectedTags.isEmpty
                                             ? null
                                             : taskController.selectedTags.first,
                                         items: taskController.tagsOptions,
                                         onChanged: (val) {
                                           taskController.selectedTags.clear();
                                           if (val != null) {
-                                            taskController.selectedTags.add(val);
+                                            taskController.selectedTags.add(
+                                              val,
+                                            );
                                           }
                                         },
                                       ),

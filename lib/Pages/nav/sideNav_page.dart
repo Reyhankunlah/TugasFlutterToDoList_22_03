@@ -14,7 +14,6 @@ class SidenavPage extends StatelessWidget {
       () => Scaffold(
         body: Row(
           children: [
-            // === SIDE NAVIGATION BAR (selalu tampil) ===
             Container(
               width: 70,
               color: CustomColor.bluePrimary,
@@ -22,7 +21,6 @@ class SidenavPage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 90),
 
-                  // === Menu Icons ===
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -37,7 +35,6 @@ class SidenavPage extends StatelessWidget {
               ),
             ),
 
-            // === HALAMAN UTAMA ===
             Expanded(
               child: mainnavController
                   .pages[mainnavController.selectedIndex.value],
@@ -67,15 +64,10 @@ class SidenavPage extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 padding: const EdgeInsets.all(12),
-                child: Icon(
-                  icon,
-                  size: 28,
-                  color: Colors.white, 
-                ),
+                child: Icon(icon, size: 28, color: Colors.white),
               ),
               const SizedBox(height: 4),
 
-              
               if (isSelected)
                 Container(
                   width: 6,

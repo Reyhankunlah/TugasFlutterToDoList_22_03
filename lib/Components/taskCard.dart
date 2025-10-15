@@ -43,7 +43,6 @@ class TaskCard extends StatelessWidget {
     final bool isMobile = screenWidth < 640;
 
     if (isMobile) {
-      // 📱 MOBILE VIEW
       return Container(
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.all(12),
@@ -76,7 +75,6 @@ class TaskCard extends StatelessWidget {
                   ],
                 ),
 
-                // bagian yang bisa expand
                 Obx(() {
                   if (!isExpanded.value) return const SizedBox();
                   return Column(
@@ -120,7 +118,6 @@ class TaskCard extends StatelessWidget {
               ],
             ),
 
-            // Tombol expand
             Align(
               alignment: Alignment.topRight,
               child: Obx(

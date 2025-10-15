@@ -41,7 +41,6 @@ class CustomProfilecard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Foto Profil
               CircleAvatar(
                 radius: 40,
                 backgroundImage: AssetImage(imagePath),
@@ -49,7 +48,6 @@ class CustomProfilecard extends StatelessWidget {
               ),
               const SizedBox(height: 12),
 
-              // Nama
               CustomText(
                 myText: name,
                 fontColor: CustomColor.black,
@@ -58,7 +56,6 @@ class CustomProfilecard extends StatelessWidget {
                 align: TextAlign.center,
               ),
 
-              // Kelas dan Absen
               CustomText(
                 myText: "$kelas\n$absen",
                 fontColor: CustomColor.elementInactive1,

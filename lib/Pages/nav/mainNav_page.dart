@@ -14,11 +14,10 @@ class MainnavPage extends StatelessWidget {
       () => Scaffold(
         body: mainnavController.pages[mainnavController.selectedIndex.value],
 
-        // === BOTTOM NAVIGATION BAR ===
         bottomNavigationBar: Container(
           height: 60,
           decoration: BoxDecoration(
-            color: CustomColor.blueSecondary,
+            color: CustomColor.bluePrimary,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.2),
@@ -40,7 +39,6 @@ class MainnavPage extends StatelessWidget {
     );
   }
 
-  // === FUNGSI MEMBUAT ICON NAVIGASI ===
   Widget _buildNavIcon(IconData icon, int index) {
     return Obx(() {
       final bool isSelected = mainnavController.selectedIndex.value == index;
@@ -54,16 +52,12 @@ class MainnavPage extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: isSelected
-                    ? CustomColor.bluePrimary
+                    ? CustomColor.blueSecondary
                     : Colors.transparent,
                 shape: BoxShape.circle,
               ),
               padding: const EdgeInsets.all(10),
-              child: Icon(
-                icon,
-                size: 25,
-                color: Colors.white,
-              ),
+              child: Icon(icon, size: 25, color: Colors.white),
             ),
             if (isSelected)
               Container(
@@ -71,7 +65,7 @@ class MainnavPage extends StatelessWidget {
                 width: 6,
                 height: 6,
                 decoration: const BoxDecoration(
-                  color: CustomColor.bluePrimary,
+                  color: CustomColor.blueSecondary,
                   shape: BoxShape.circle,
                 ),
               ),

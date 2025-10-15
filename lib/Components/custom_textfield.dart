@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final VoidCallback? onTap;
   final Widget? suffixIcon;
-  final double? width; // Tambahan untuk kontrol lebar opsional
+  final double? width;
 
   const CustomTextField({
     super.key,
@@ -21,7 +21,7 @@ class CustomTextField extends StatelessWidget {
     this.readOnly = false,
     this.onTap,
     this.suffixIcon,
-    this.width, // bisa diatur dari luar
+    this.width,
   });
 
   @override

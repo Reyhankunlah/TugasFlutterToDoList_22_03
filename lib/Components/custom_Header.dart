@@ -15,7 +15,6 @@ class CustomHeader extends StatelessWidget {
         if (isMobile) {
           return Stack(
             children: [
-              // Header Background
               Positioned(
                 left: 0,
                 top: 0,
@@ -34,7 +33,6 @@ class CustomHeader extends StatelessWidget {
                 ),
               ),
 
-              // Oval Dekorasi
               Positioned(
                 left: 235,
                 top: -231,
@@ -48,7 +46,6 @@ class CustomHeader extends StatelessWidget {
                 ),
               ),
 
-              // Header Text
               Positioned(
                 left: 17,
                 top: 21,
@@ -62,10 +59,8 @@ class CustomHeader extends StatelessWidget {
             ],
           );
         } else {
-          // 💻 Tampilan untuk Tablet / Layar Lebar
           return Stack(
             children: [
-              // Header Background
               Positioned(
                 top: 0,
                 child: Container(
