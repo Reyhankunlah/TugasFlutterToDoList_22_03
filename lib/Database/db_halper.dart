@@ -36,16 +36,12 @@ class DBHelper {
     );
   }
 
-  // =========================
-  // CRUD OPERATIONS
-  // =========================
-
   Future<int> insertTask(TaskModel task) async {
     final dbClient = await db;
     return await dbClient.insert('tasks', {
       'title': task.title,
       'status': task.status.name,
-      'dueDate': task.dueDate?.toIso8601String(),
+      'dueDate': task.dueDate.toString(),
       'tags': task.tags.join(','),
     });
   }
@@ -63,12 +59,9 @@ class DBHelper {
           (e) => e.name == data['status'],
           orElse: () => TaskStatus.notStarted,
         ),
-        dueDate: data['dueDate'] != null
-            ? DateTime.parse(data['dueDate'])
-            : null,
-        tags: data['tags'] != null && data['tags'].isNotEmpty
-            ? data['tags'].split(',')
-            : [],
+        dueDate: DateTime.parse(data['dueDate']),
+
+        tags: data['tags'].split(','),
       );
     });
   }
@@ -80,7 +73,7 @@ class DBHelper {
       {
         'title': task.title,
         'status': task.status.name,
-        'dueDate': task.dueDate?.toIso8601String(),
+        'dueDate': task.dueDate.toString(),
         'tags': task.tags.join(','),
       },
       where: 'id = ?',

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
-import 'package:flutter_todolist/Components/custom_navIcon.dart';
 import 'package:flutter_todolist/Controllers/nav/mainNav_controller.dart';
 import 'package:get/get.dart';
 
@@ -30,31 +29,49 @@ class MainnavPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Obx(
-                () => CustomNavIcon(
-                  icon: Icons.house,
-                  isSelected: mainnavController.selectedIndex.value == 0,
-                  onTap: () => mainnavController.changeIndex(0),
-                ),
-              ),
-              Obx(
-                () => CustomNavIcon(
-                  icon: Icons.history,
-                  isSelected: mainnavController.selectedIndex.value == 1,
-                  onTap: () => mainnavController.changeIndex(1),
-                ),
-              ),
-              Obx(
-                () => CustomNavIcon(
-                  icon: Icons.person,
-                  isSelected: mainnavController.selectedIndex.value == 2,
-                  onTap: () => mainnavController.changeIndex(2),
-                ),
-              ),
+              _buildNavIcon(Icons.house, 0),
+              _buildNavIcon(Icons.history, 1),
+              _buildNavIcon(Icons.person, 2),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildNavIcon(IconData icon, int index) {
+    return Obx(() {
+      final bool isSelected = mainnavController.selectedIndex.value == index;
+
+      return GestureDetector(
+        onTap: () => mainnavController.changeIndex(index),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 4),
+            Container(
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? CustomColor.blueSecondary
+                    : Colors.transparent,
+                shape: BoxShape.circle,
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Icon(icon, size: 25, color: Colors.white),
+            ),
+            if (isSelected)
+              Container(
+                margin: const EdgeInsets.only(top: 4),
+                width: 6,
+                height: 6,
+                decoration: const BoxDecoration(
+                  color: CustomColor.blueSecondary,
+                  shape: BoxShape.circle,
+                ),
+              ),
+          ],
+        ),
+      );
+    });
   }
 }

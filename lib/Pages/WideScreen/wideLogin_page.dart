@@ -3,7 +3,6 @@ import 'package:flutter_todolist/Components/backDecoration.dart';
 import 'package:flutter_todolist/Components/custom_color.dart';
 import 'package:flutter_todolist/Components/custom_textfield.dart';
 import 'package:flutter_todolist/Controllers/auth_controller.dart';
-import 'package:flutter_todolist/Controllers/task_controller.dart';
 import 'package:flutter_todolist/components/custom_button.dart';
 import 'package:flutter_todolist/components/custom_text.dart';
 import 'package:flutter_todolist/components/social_button.dart';
@@ -13,7 +12,6 @@ class WideloginPage extends StatelessWidget {
   WideloginPage({super.key});
 
   final cLogPage = Get.find<AuthController>();
-  final taskC = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
